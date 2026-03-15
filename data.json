@@ -1,0 +1,49 @@
+{
+    "last_updated": "2026-03-15 22:45:00",
+    "macro_indicators": {
+        "US10Y": 4.25,
+        "DXY": 103.50
+    },
+    "top_momentum_stocks": [
+        {
+            "ticker": "NVDA",
+            "price": 900.50,
+            "ma50": 820.30,
+            "ma200": 650.10,
+            "high52w": 950.00,
+            "return_3mo_pct": 45.20
+        },
+        {
+            "ticker": "META",
+            "price": 505.20,
+            "ma50": 480.10,
+            "ma200": 380.50,
+            "high52w": 520.00,
+            "return_3mo_pct": 38.50
+        },
+        {
+            "ticker": "AMZN",
+            "price": 178.30,
+            "ma50": 170.20,
+            "ma200": 150.40,
+            "high52w": 185.00,
+            "return_3mo_pct": 22.10
+        },
+        {
+            "ticker": "MSFT",
+            "price": 415.60,
+            "ma50": 405.20,
+            "ma200": 370.80,
+            "high52w": 430.00,
+            "return_3mo_pct": 15.40
+        },
+        {
+            "ticker": "GOOGL",
+            "price": 150.10,
+            "ma50": 145.30,
+            "ma200": 135.20,
+            "high52w": 155.00,
+            "return_3mo_pct": 12.80
+        }
+    ]
+}
