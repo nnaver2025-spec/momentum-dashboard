@@ -942,59 +942,7 @@
 
                 // Render Market Overview
                 if (data.market_overview) {
-                    const mo = data.market_overview;
-                    const overviewEl = document.getElementById('market-overview');
-                    
-                    function renderMarketCard(label, mkt) {
-                        const changeVal = parseFloat(String(mkt.change).replace(/,/g, ''));
-                        const isUp = changeVal > 0;
-                        const isDown = changeVal < 0;
-                        const dirClass = isUp ? 'up' : (isDown ? 'down' : '');
-                        const arrow = isUp ? '▲' : (isDown ? '▼' : '');
-                        const absChange = Math.abs(changeVal).toFixed(2);
-                        const pctStr = String(mkt.change_pct).replace('+','').replace('-','');
-                        
-                        return `
-                            <div class="market-card">
-                                <div class="market-card-label">${label}</div>
-                                <div class="market-card-price">${mkt.price}</div>
-                                <div class="market-card-change ${dirClass}">
-                                    ${isUp ? '+' : ''}${mkt.change_pct}%
-                                    ${arrow} ${absChange}
-                                </div>
-                            </div>`;
-                    }
-                    
-                    // Determine investor sentiment
-                    const foreignVal = parseFloat(String(mo.KOSPI?.foreign || '0').replace(/[,+]/g, ''));
-                    const dotColor = foreignVal < 0 ? '#ef4444' : '#10b981';
-                    const sentimentText = foreignVal < 0 ? '조심해요' : '괜찮아요';
-                    
-                    function renderInvestorRow(label, val) {
-                        const numVal = parseFloat(String(val).replace(/[,+]/g, ''));
-                        const cls = numVal >= 0 ? 'positive' : 'negative';
-                        const display = String(val).startsWith('+') || String(val).startsWith('-') ? val : (numVal >= 0 ? '+' + val : val);
-                        return `
-                            <div class="investor-row">
-                                <span class="investor-row-label">${label}</span>
-                                <span class="investor-row-value ${cls}">${display}억</span>
-                            </div>`;
-                    }
-                    
-                    overviewEl.innerHTML = `
-                        ${mo.KOSPI ? renderMarketCard('코스피', mo.KOSPI) : ''}
-                        ${mo.KOSDAQ ? renderMarketCard('코스닥', mo.KOSDAQ) : ''}
-                        <div class="investor-card">
-                            <div class="investor-card-header">
-                                <div class="dot" style="background: ${dotColor}"></div>
-                                <span>오늘의 시장</span>
-                                <span style="font-weight: 800; color: ${dotColor}; margin-left: 4px;">${sentimentText}</span>
-                            </div>
-                            ${mo.KOSPI ? renderInvestorRow('외국인', mo.KOSPI.foreign) : ''}
-                            ${mo.KOSPI ? renderInvestorRow('기관', mo.KOSPI.institution) : ''}
-                            ${mo.KOSPI ? renderInvestorRow('개인', mo.KOSPI.individual) : ''}
-                        </div>
-                    `;
+                    renderMarketOverview(data.market_overview);
                 }
 
                 // Update Theme Rankings
@@ -1323,6 +1271,91 @@
                 document.getElementById('search-dropdown').classList.remove('active');
             }
         });
+        // Market Overview Rendering Logic
+        function renderMarketOverview(mo) {
+            const overviewEl = document.getElementById('market-overview');
+            if (!overviewEl) return;
+
+            function renderMarketCard(label, mkt) {
+                const changeVal = parseFloat(String(mkt.change).replace(/,/g, ''));
+                const isUp = changeVal > 0;
+                const isDown = changeVal < 0;
+                const dirClass = isUp ? 'up' : (isDown ? 'down' : '');
+                const arrow = isUp ? '▲' : (isDown ? '▼' : '');
+                const absChange = Math.abs(changeVal).toFixed(2);
+                
+                return `
+                    <div class="market-card">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                            <div class="market-card-label">${label}</div>
+                            <span style="font-size: 0.65rem; color: #10b981; font-weight: 800; background: #ecfdf5; padding: 1px 4px; border-radius: 4px;">LIVE</span>
+                        </div>
+                        <div class="market-card-price">${mkt.price}</div>
+                        <div class="market-card-change ${dirClass}">
+                            ${isUp ? '+' : ''}${mkt.change_pct}%
+                            ${arrow} ${absChange}
+                        </div>
+                    </div>`;
+            }
+            
+            const foreignVal = parseFloat(String(mo.KOSPI?.foreign || '0').replace(/[,+]/g, ''));
+            const dotColor = foreignVal < 0 ? '#ef4444' : '#10b981';
+            const sentimentText = foreignVal < 0 ? '조심해요' : '괜찮아요';
+            
+            function renderInvestorRow(label, val) {
+                const numVal = parseFloat(String(val).replace(/[,+]/g, ''));
+                const cls = numVal >= 0 ? 'positive' : 'negative';
+                const display = (String(val).startsWith('+') || String(val).startsWith('-')) ? val : (numVal >= 0 ? '+' + val : val);
+                return `
+                    <div class="investor-row">
+                        <span class="investor-row-label">${label}</span>
+                        <span class="investor-row-value ${cls}">${display}억</span>
+                    </div>`;
+            }
+            
+            overviewEl.innerHTML = `
+                ${mo.KOSPI ? renderMarketCard('코스피', mo.KOSPI) : ''}
+                ${mo.KOSDAQ ? renderMarketCard('코스닥', mo.KOSDAQ) : ''}
+                <div class="investor-card">
+                    <div class="investor-card-header">
+                        <div class="dot" style="background: ${dotColor}"></div>
+                        <span>시장 수급</span>
+                        <span style="font-weight: 800; color: ${dotColor}; margin-left: 4px;">${sentimentText}</span>
+                    </div>
+                    ${mo.KOSPI ? renderInvestorRow('외국인', mo.KOSPI.foreign) : ''}
+                    ${mo.KOSPI ? renderInvestorRow('기관', mo.KOSPI.institution) : ''}
+                    ${mo.KOSPI ? renderInvestorRow('개인', mo.KOSPI.individual) : ''}
+                </div>
+            `;
+        }
+
+        async function updateRealTimeMarketData() {
+            try {
+                const fetchMarket = async (symbol) => {
+                    const basic = await fetch(`/api/proxy/index/${symbol}/basic`).then(r => r.json());
+                    const trend = await fetch(`/api/proxy/index/${symbol}/trend`).then(r => r.json());
+                    return {
+                        price: basic.closePrice,
+                        change: basic.compareToPreviousClosePrice,
+                        change_pct: basic.fluctuationsRatio,
+                        foreign: trend.foreignValue,
+                        institution: trend.institutionalValue,
+                        individual: trend.personalValue
+                    };
+                };
+
+                const kospi = await fetchMarket('KOSPI');
+                const kosdaq = await fetchMarket('KOSDAQ');
+                
+                renderMarketOverview({ KOSPI: kospi, KOSDAQ: kosdaq });
+                // console.log("Real-time market data updated:", new Date().toLocaleTimeString());
+            } catch (e) {
+                console.error("Real-time update failed:", e);
+            }
+        }
+
+        // Start polling every 10 seconds
+        setInterval(updateRealTimeMarketData, 10000);
         function handleSearchBtn() {
             const q = searchInput.value;
             const results = searchStocks(q);
