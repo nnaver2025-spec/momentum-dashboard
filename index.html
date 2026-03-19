@@ -163,7 +163,7 @@
             text-align: center;
             margin-bottom: 1rem;
             position: relative;
-            overflow: hidden;
+            z-index: 50;
             box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.3);
             display: flex;
             align-items: center;
@@ -223,6 +223,183 @@
         }
 
         .search-btn:hover { background: #1d4ed8; }
+
+        /* Search Autocomplete Dropdown */
+        .search-dropdown {
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+            max-height: 360px;
+            overflow-y: auto;
+            z-index: 500;
+            display: none;
+        }
+        .search-dropdown.active { display: block; }
+        .search-result-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 16px;
+            cursor: pointer;
+            transition: background 0.15s;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .search-result-item:last-child { border-bottom: none; }
+        .search-result-item:hover { background: #f0f7ff; }
+        .search-result-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+        }
+        .search-result-symbol {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: white;
+            background: var(--primary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+        .search-result-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1e293b;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .search-result-market {
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+        .market-KOSPI { background: #eff6ff; color: #3b82f6; }
+        .market-KOSDAQ { background: #fef3c7; color: #d97706; }
+        .market-ETF { background: #ecfdf5; color: #059669; }
+        .search-empty {
+            padding: 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .search-count {
+            padding: 8px 16px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            background: #f8fafc;
+            border-radius: 0 0 0.75rem 0.75rem;
+        }
+
+        /* Market Overview Section */
+        .market-overview {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .market-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.25rem 1.5rem;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        .market-card-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #475569;
+            margin-bottom: 4px;
+        }
+        .market-card-price {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: #0f172a;
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.2;
+        }
+        .market-card-change {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+        .market-card-change.up { color: #ef4444; }
+        .market-card-change.down { color: #3b82f6; }
+        .market-bar-container {
+            display: flex;
+            gap: 0;
+            height: 5px;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        .market-bar-up { background: #ef4444; height: 100%; }
+        .market-bar-flat { background: #94a3b8; height: 100%; }
+        .market-bar-down { background: #3b82f6; height: 100%; }
+        .market-bar-legend {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .market-bar-legend .up-text { color: #ef4444; }
+        .market-bar-legend .flat-text { color: #94a3b8; }
+        .market-bar-legend .down-text { color: #3b82f6; }
+        .investor-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.25rem 1.5rem;
+            box-shadow: var(--shadow);
+            min-width: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .investor-card-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+        .investor-card-header .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .investor-card-header span {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+        .investor-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+        }
+        .investor-row-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #475569;
+        }
+        .investor-row-value {
+            font-size: 0.95rem;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+        }
+        .investor-row-value.positive { color: #ef4444; }
+        .investor-row-value.negative { color: #3b82f6; }
 
         /* Stock Cards Grid */
         .section-header {
@@ -557,7 +734,7 @@
             cursor: pointer;
             transition: 0.2s;
         }
-        .nested-stock-item:hover { background: #f1f5f9; transform: scale(1.02); }
+        .nested-stock-item:hover { background: #f1f5f9; }
         /* Strategy & New Highs Layout */
         .bottom-container {
             display: grid;
@@ -643,10 +820,16 @@
         <section class="ai-search-container">
             <h2>무엇을 도와드릴까요?</h2>
             <div class="search-box">
-                <input type="text" placeholder="종목명 또는 심볼을 입력하세요 (예: NVDA, 삼성전자)">
-                <button class="search-btn">🔍</button>
+                <input id="stock-search-input" type="text" placeholder="종목명, 코드로 검색 (예: 삼성전자, 005930)" autocomplete="off">
+                <button class="search-btn" onclick="handleSearchBtn()">🔍</button>
+                <div id="search-dropdown" class="search-dropdown"></div>
             </div>
         </section>
+
+        <!-- Market Overview -->
+        <div id="market-overview" class="market-overview">
+            <!-- Injected by JS -->
+        </div>
 
         <!-- Dashboard Main Content Grid -->
         <div class="dashboard-container">
@@ -755,6 +938,63 @@
                 // Update Last Updated
                 if (data.last_updated) {
                     document.getElementById('last-updated').textContent = `${data.last_updated} 기준`;
+                }
+
+                // Render Market Overview
+                if (data.market_overview) {
+                    const mo = data.market_overview;
+                    const overviewEl = document.getElementById('market-overview');
+                    
+                    function renderMarketCard(label, mkt) {
+                        const changeVal = parseFloat(String(mkt.change).replace(/,/g, ''));
+                        const isUp = changeVal > 0;
+                        const isDown = changeVal < 0;
+                        const dirClass = isUp ? 'up' : (isDown ? 'down' : '');
+                        const arrow = isUp ? '▲' : (isDown ? '▼' : '');
+                        const absChange = Math.abs(changeVal).toFixed(2);
+                        const pctStr = String(mkt.change_pct).replace('+','').replace('-','');
+                        
+                        return `
+                            <div class="market-card">
+                                <div class="market-card-label">${label}</div>
+                                <div class="market-card-price">${mkt.price}</div>
+                                <div class="market-card-change ${dirClass}">
+                                    ${isUp ? '+' : ''}${mkt.change_pct}%
+                                    ${arrow} ${absChange}
+                                </div>
+                            </div>`;
+                    }
+                    
+                    // Determine investor sentiment
+                    const foreignVal = parseFloat(String(mo.KOSPI?.foreign || '0').replace(/[,+]/g, ''));
+                    const dotColor = foreignVal < 0 ? '#ef4444' : '#10b981';
+                    const sentimentText = foreignVal < 0 ? '조심해요' : '괜찮아요';
+                    
+                    function renderInvestorRow(label, val) {
+                        const numVal = parseFloat(String(val).replace(/[,+]/g, ''));
+                        const cls = numVal >= 0 ? 'positive' : 'negative';
+                        const display = String(val).startsWith('+') || String(val).startsWith('-') ? val : (numVal >= 0 ? '+' + val : val);
+                        return `
+                            <div class="investor-row">
+                                <span class="investor-row-label">${label}</span>
+                                <span class="investor-row-value ${cls}">${display}억</span>
+                            </div>`;
+                    }
+                    
+                    overviewEl.innerHTML = `
+                        ${mo.KOSPI ? renderMarketCard('코스피', mo.KOSPI) : ''}
+                        ${mo.KOSDAQ ? renderMarketCard('코스닥', mo.KOSDAQ) : ''}
+                        <div class="investor-card">
+                            <div class="investor-card-header">
+                                <div class="dot" style="background: ${dotColor}"></div>
+                                <span>오늘의 시장</span>
+                                <span style="font-weight: 800; color: ${dotColor}; margin-left: 4px;">${sentimentText}</span>
+                            </div>
+                            ${mo.KOSPI ? renderInvestorRow('외국인', mo.KOSPI.foreign) : ''}
+                            ${mo.KOSPI ? renderInvestorRow('기관', mo.KOSPI.institution) : ''}
+                            ${mo.KOSPI ? renderInvestorRow('개인', mo.KOSPI.individual) : ''}
+                        </div>
+                    `;
                 }
 
                 // Update Theme Rankings
@@ -906,13 +1146,19 @@
                                         <span id="arrow-${idx}" style="font-size: 0.5rem; color: #94a3b8; transition: 0.3s; transform: rotate(180deg);">▼</span>
                                     </div>
                                 </div>
-                                <div id="nested-stocks-${idx}" class="stock-list-nested" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 6px; margin-top: 8px; padding-top: 8px; border-top: 1px dashed #cbd5e1;">
-                                    ${(s.stocks || []).map(st => `
-                                        <div class="nested-stock-item" onclick="openChart('${st.symbol}', '${st.name}'); event.stopPropagation();" style="display: flex; flex-direction: column; background: white; padding: 5px; border-radius: 4px; border: 1px solid #f1f5f9; cursor: pointer;">
-                                            <span style="font-size: 0.7rem; color: #64748b; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${st.name}</span>
-                                            <span style="font-size: 0.75rem; font-weight: 800; color: ${st.pct >= 0 ? 'var(--danger)' : 'var(--primary)'};">${st.pct >= 0 ? '+' : ''}${st.pct}%</span>
-                                        </div>
-                                    `).join('')}
+                                <div id="nested-stocks-${idx}" class="stock-list-nested" style="display: flex; flex-direction: column; gap: 2px; margin-top: 8px; padding-top: 8px; border-top: 1px dashed #cbd5e1;">
+                                    ${(s.stocks || []).map(st => {
+                                        const barW = Math.min(Math.abs(st.pct) * 8, 100);
+                                        const isStUp = st.pct >= 0;
+                                        return `
+                                        <div class="nested-stock-item" onclick="openChart('${st.symbol}', '${st.name}'); event.stopPropagation();" style="display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 6px; cursor: pointer; transition: background 0.15s;">
+                                            <span style="flex: 0 0 90px; font-size: 0.8rem; color: #334155; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${st.name}</span>
+                                            <div style="flex: 1; height: 6px; background: #f1f5f9; border-radius: 3px; overflow: hidden; min-width: 40px;">
+                                                <div style="width: ${barW}%; height: 100%; border-radius: 3px; background: ${isStUp ? '#10b981' : '#ef4444'};"></div>
+                                            </div>
+                                            <span style="flex: 0 0 52px; text-align: right; font-size: 0.8rem; font-weight: 700; color: ${isStUp ? '#10b981' : '#ef4444'};">${isStUp ? '+' : ''}${st.pct}%</span>
+                                        </div>`;
+                                    }).join('')}
                                 </div>
                             </div>
                         `;
@@ -990,6 +1236,107 @@
         fetchData();
         // Refresh every 30 seconds
         setInterval(fetchData, 30000);
+
+        // ============ STOCK SEARCH ============
+        let stocksDB = [];
+
+        async function loadStocksDB() {
+            try {
+                const resp = await fetch('stocks_db.json');
+                if (!resp.ok) return;
+                const data = await resp.json();
+                stocksDB = data.stocks || [];
+                console.log(`Search DB loaded: ${stocksDB.length} stocks`);
+            } catch (e) {
+                console.warn('stocks_db.json not found. Run fetch_stocks.py first.');
+            }
+        }
+
+        function searchStocks(query) {
+            if (!query || query.length < 1) return [];
+            const q = query.toLowerCase().trim();
+            const results = [];
+            for (const s of stocksDB) {
+                if (results.length >= 20) break;
+                const nameMatch = s.name.toLowerCase().includes(q);
+                const symbolMatch = s.symbol.toLowerCase().includes(q);
+                if (nameMatch || symbolMatch) {
+                    // Prioritize exact matches
+                    if (s.name.toLowerCase() === q || s.symbol.toLowerCase() === q) {
+                        results.unshift(s);
+                    } else if (s.name.toLowerCase().startsWith(q) || s.symbol.toLowerCase().startsWith(q)) {
+                        results.splice(Math.min(3, results.length), 0, s);
+                    } else {
+                        results.push(s);
+                    }
+                }
+            }
+            return results.slice(0, 15);
+        }
+
+        function renderSearchResults(results, query) {
+            const dropdown = document.getElementById('search-dropdown');
+            if (!query || query.trim().length < 1) {
+                dropdown.classList.remove('active');
+                return;
+            }
+            if (results.length === 0) {
+                dropdown.innerHTML = `<div class="search-empty">"${query}"에 대한 검색 결과가 없습니다.</div>`;
+                dropdown.classList.add('active');
+                return;
+            }
+            dropdown.innerHTML = results.map(s => {
+                const highlighted = s.name.replace(
+                    new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi'),
+                    '<b style="color: var(--primary)">$1</b>'
+                );
+                return `
+                    <div class="search-result-item" onclick="openChart('${s.symbol}', '${s.name}')">
+                        <div class="search-result-left">
+                            <span class="search-result-symbol">${s.symbol}</span>
+                            <span class="search-result-name">${highlighted}</span>
+                        </div>
+                        <span class="search-result-market market-${s.market}">${s.market}</span>
+                    </div>`;
+            }).join('') + `<div class="search-count">총 ${results.length}건 표시</div>`;
+            dropdown.classList.add('active');
+        }
+
+        const searchInput = document.getElementById('stock-search-input');
+        let searchTimer = null;
+        searchInput.addEventListener('input', (e) => {
+            clearTimeout(searchTimer);
+            searchTimer = setTimeout(() => {
+                const q = e.target.value;
+                const results = searchStocks(q);
+                renderSearchResults(results, q);
+            }, 150);
+        });
+        searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.getElementById('search-dropdown').classList.remove('active');
+                searchInput.blur();
+            }
+        });
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-box')) {
+                document.getElementById('search-dropdown').classList.remove('active');
+            }
+        });
+        function handleSearchBtn() {
+            const q = searchInput.value;
+            const results = searchStocks(q);
+            if (results.length > 0) {
+                openChart(results[0].symbol, results[0].name);
+            } else {
+                renderSearchResults([], q);
+            }
+        }
+        searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') handleSearchBtn();
+        });
+
+        loadStocksDB();
     </script>
 </body>
 </html>

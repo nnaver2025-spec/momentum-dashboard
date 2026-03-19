@@ -24,6 +24,36 @@ def get_macro_data():
         
     return macro_dict
 
+def get_market_overview():
+    """NAVER Finance API에서 KOSPI/KOSDAQ 시세 + 투자자 매매동향을 가져옵니다."""
+    overview = {}
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
+    
+    for market in ['KOSPI', 'KOSDAQ']:
+        try:
+            # Basic price data
+            r = requests.get(f'https://m.stock.naver.com/api/index/{market}/basic', headers=headers, timeout=10)
+            basic = r.json()
+            
+            # Investor trend data
+            r2 = requests.get(f'https://m.stock.naver.com/api/index/{market}/trend', headers=headers, timeout=10)
+            trend = r2.json()
+            
+            overview[market] = {
+                'price': basic.get('closePrice', '0'),
+                'change': basic.get('compareToPreviousClosePrice', '0'),
+                'change_pct': basic.get('fluctuationsRatio', '0'),
+                'foreign': trend.get('foreignValue', '0'),
+                'institution': trend.get('institutionalValue', '0'),
+                'individual': trend.get('personalValue', '0'),
+            }
+            print(f"  {market}: {overview[market]['price']} ({overview[market]['change_pct']}%)")
+        except Exception as e:
+            print(f"  {market} overview error: {e}")
+            overview[market] = {'price': '0', 'change': '0', 'change_pct': '0', 'foreign': '0', 'institution': '0', 'individual': '0'}
+    
+    return overview
+
 def get_market_sentiment():
     try:
         kospi = yf.Ticker("^KS11").history(period="1y")
@@ -446,12 +476,13 @@ if __name__ == "__main__":
     ]
 
     final_output = {
-        "last_updated": datetime.now().strftime("%m월 %d일 %H:%M 기준"),
+        "last_updated": datetime.now().strftime("%m월 %d일 %H:%M"),
         "market_sentiment": sentiment,
         "macro_indicators": macro_data,
+        "market_overview": get_market_overview(),
         "top_momentum_stocks": momentum_data,
         "sector_performance": sector_performance,
-        "テーマ_rankings": theme_rankings, # Keeping consistency with key change if needed
+        "テーマ_rankings": theme_rankings,
         "theme_rankings": theme_rankings,
         "new_highs": new_highs,
         "investment_strategies": strategies
