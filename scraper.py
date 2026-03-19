@@ -1,64 +1,462 @@
 import yfinance as yf
 import pandas as pd
 import json
+import requests
 from datetime import datetime
+from io import StringIO
 
 def get_macro_data():
-    macro_dict = {"US10Y": 0.0, "DXY": 0.0}
+    macro_dict = {"KOSPI": 0.0, "KOSDAQ": 0.0, "USD_KRW": 0.0}
     try:
-        tnx = yf.Ticker("^TNX").history(period="5d")
-        if not tnx.empty: 
-            macro_dict["US10Y"] = round(float(tnx['Close'].iloc[-1]), 3)
+        kospi = yf.Ticker("^KS11").history(period="5d")
+        if not kospi.empty: 
+            macro_dict["KOSPI"] = round(float(kospi['Close'].iloc[-1]), 2)
         
-        dxy = yf.Ticker("DX-Y.NYB").history(period="5d")
-        if not dxy.empty: 
-            macro_dict["DXY"] = round(float(dxy['Close'].iloc[-1]), 2)
+        kosdaq = yf.Ticker("^KQ11").history(period="5d")
+        if not kosdaq.empty: 
+            macro_dict["KOSDAQ"] = round(float(kosdaq['Close'].iloc[-1]), 2)
+            
+        usdkrw = yf.Ticker("KRW=X").history(period="5d")
+        if not usdkrw.empty:
+            macro_dict["USD_KRW"] = round(float(usdkrw['Close'].iloc[-1]), 2)
     except Exception as e:
         print(f"Macro data error: {e}")
         
     return macro_dict
 
+def get_market_sentiment():
+    try:
+        kospi = yf.Ticker("^KS11").history(period="1y")
+        if kospi.empty: return "Yellow"
+        
+        current_price = kospi['Close'].iloc[-1]
+        ma50 = kospi['Close'].rolling(window=50).mean().iloc[-1]
+        ma200 = kospi['Close'].rolling(window=200).mean().iloc[-1]
+        
+        if current_price > ma50 and ma50 > ma200:
+            return "Green"
+        elif current_price < ma200:
+            return "Red"
+        else:
+            return "Yellow"
+    except:
+        return "Yellow"
+
+def get_krx_tickers():
+    """Simple fallback: Top Major Korean Stocks with sector info"""
+    major_stocks = [
+        ("005930.KS", "삼성전자", "IT"),
+        ("000660.KS", "SK하이닉스", "IT"),
+        ("005490.KS", "POSCO홀딩스", "철강"),
+        ("035420.KS", "NAVER", "서비스"),
+        ("035720.KS", "카카오", "서비스"),
+        ("005380.KS", "현대차", "자동차"),
+        ("000270.KS", "기아", "자동차"),
+        ("068270.KS", "셀트리온", "바이오"),
+        ("207940.KS", "삼성바이오로직스", "바이오"),
+        ("051910.KS", "LG화학", "화학"),
+        ("373220.KS", "LG에너지솔루션", "배터리"),
+        ("006400.KS", "삼성SDI", "배터리"),
+        ("096770.KS", "SK이노베이션", "배터리"),
+        ("036570.KS", "엔씨소프트", "게임"),
+        ("251270.KS", "넷마블", "게임"),
+        ("003550.KS", "LG", "지주사"),
+        ("034730.KS", "SK", "지주사"),
+    ]
+    return major_stocks
+
 def get_momentum_stocks():
-    url = 'https://en.wikipedia.org/wiki/List_of_S&P_500_companies'
-    table = pd.read_html(url)[0]
-    tickers = table['Symbol'].tolist()[:100] 
-
-    spy = yf.download('SPY', period="3mo")['Close']
-    spy_return = (spy.iloc[-1] - spy.iloc[0]) / spy.iloc[0]
-
+    stocks = get_krx_tickers()
     results = []
-    for ticker in tickers:
+    for ticker, name, sector in stocks:
         try:
             stock = yf.Ticker(ticker)
             hist = stock.history(period="1y")
-            if len(hist) < 200: continue
+            if len(hist) < 20: continue
 
             current_price = float(hist['Close'].iloc[-1])
             ma50 = float(hist['Close'].rolling(window=50).mean().iloc[-1])
             ma200 = float(hist['Close'].rolling(window=200).mean().iloc[-1])
             high52w = float(hist['Close'].max())
 
-            if current_price > ma50 and ma50 > ma200:
-                if current_price >= high52w * 0.95:
-                    hist_3mo = hist.tail(63) 
-                    stock_return = (hist_3mo['Close'].iloc[-1] - hist_3mo['Close'].iloc[0]) / hist_3mo['Close'].iloc[0]
+            hist_3mo = hist.tail(63) 
+            stock_return = (hist_3mo['Close'].iloc[-1] - hist_3mo['Close'].iloc[0]) / hist_3mo['Close'].iloc[0]
 
-                    if stock_return > spy_return:
-                        results.append({
-                            "ticker": ticker, "price": round(current_price, 2),
-                            "ma50": round(ma50, 2), "ma200": round(ma200, 2),
-                            "high52w": round(high52w, 2), "return_3mo_pct": round(stock_return * 100, 2)
-                        })
+            results.append({
+                "ticker": ticker.split('.')[0],
+                "symbol": ticker.split('.')[0], # Consistency
+                "name": name,
+                "sector": sector,
+                "price": int(current_price),
+                "ma50": int(ma50), 
+                "ma200": int(ma200),
+                "high52w": int(high52w), 
+                "return_3mo_pct": round(stock_return * 100, 2)
+            })
         except: continue
-    return sorted(results, key=lambda x: x['return_3mo_pct'], reverse=True)[:5]
+        
+    return sorted(results, key=lambda x: x['return_3mo_pct'], reverse=True)[:10]
 
 if __name__ == "__main__":
+    print("한국 주식 데이터 가져오는 중...")
     macro_data = get_macro_data()
+    sentiment = get_market_sentiment()
     momentum_data = get_momentum_stocks()
+    
+    # Theme Rankings (Today's Themes)
+    theme_rankings = [
+        {
+            "rank": 1, "name": "바이오", 
+            "top_stocks": [
+                {"name": "메지온", "symbol": "140860", "pct": 11.7},
+                {"name": "와이바이오로직스", "symbol": "460110", "pct": 4.6},
+                {"name": "안트로젠", "symbol": "055660", "pct": 2.9}
+            ]
+        },
+        {
+            "rank": 2, "name": "태양광", 
+            "top_stocks": [
+                {"name": "신성이엔지", "symbol": "011930", "pct": 5.7},
+                {"name": "HD현대에너지솔루션", "symbol": "322000", "pct": 4.6},
+                {"name": "OCI홀딩스", "symbol": "010060", "pct": 0.6}
+            ]
+        },
+        {
+            "rank": 3, "name": "해운", 
+            "top_stocks": [
+                {"name": "흥아해운", "symbol": "003280", "pct": 7.0},
+                {"name": "대한해운", "symbol": "005880", "pct": 0.7},
+                {"name": "KSS해운", "symbol": "011300", "pct": 0.3}
+            ]
+        },
+        {
+            "rank": 4, "name": "원전", 
+            "top_stocks": [
+                {"name": "대우건설", "symbol": "047040", "pct": 4.3},
+                {"name": "현대건설", "symbol": "000720", "pct": 0.8},
+                {"name": "한전KPS", "symbol": "051600", "pct": 0.7}
+            ]
+        },
+        {
+            "rank": 5, "name": "방산", 
+            "top_stocks": [
+                {"name": "한화시스템", "symbol": "272210", "pct": 2.0},
+                {"name": "삼양컴텍", "symbol": "000000", "pct": 1.8},
+                {"name": "LIG넥스원", "symbol": "079550", "pct": 0.6}
+            ]
+        }
+    ]
+
+    # Sector Performance with Nested Stocks
+    sector_performance = [
+        {
+            "id": "semiconductor", "name": "반도체", "return_pct": -2.99, "market_cap": "6.5조", "top_stocks": ["삼성전자", "SK하이닉스"],
+            "sub_categories": [
+                {
+                    "name": "메모리", "return_pct": -4.0, "count": 15, "cap": "5.0조",
+                    "stocks": [
+                        {"name": "삼성전자", "symbol": "005930", "pct": -3.5}, {"name": "SK하이닉스", "symbol": "000660", "pct": -4.8}, {"name": "한미반도체", "symbol": "042700", "pct": -2.1},
+                        {"name": "제주반도체", "symbol": "080220", "pct": 1.2}, {"name": "피에스케이홀딩스", "symbol": "031980", "pct": 0.5}, {"name": "테크윙", "symbol": "089030", "pct": -1.5},
+                        {"name": "미래반도체", "symbol": "367170", "pct": 4.2}, {"name": "엑시콘", "symbol": "092870", "pct": 2.1}, {"name": "네오셈", "symbol": "253590", "pct": 0.8},
+                        {"name": "디아이", "symbol": "003160", "pct": -0.3}, {"name": "오픈엣지테크놀로지", "symbol": "394280", "pct": 5.5}, {"name": "가온칩스", "symbol": "399720", "pct": 1.8},
+                        {"name": "에이디테크놀로지", "symbol": "200710", "pct": 0.5}, {"name": "자람테크놀로지", "symbol": "389020", "pct": 3.2}, {"name": "쿼리타스반도체", "symbol": "438060", "pct": -1.1},
+                        {"name": "어보브반도체", "symbol": "102120", "pct": 2.4}, {"name": "픽셀플러스", "symbol": "087600", "pct": -0.7}, {"name": "에이직랜드", "symbol": "445090", "pct": 4.1}
+                    ]
+                },
+                {
+                    "name": "반도체소재/부품", "return_pct": 0.7, "count": 63, "cap": "1.1조",
+                    "stocks": [
+                        {"name": "솔브레인", "symbol": "357780", "pct": 1.5}, {"name": "동진쎄미켐", "symbol": "005290", "pct": 0.8}, {"name": "경인양행", "symbol": "012610", "pct": -0.2},
+                        {"name": "리노공업", "symbol": "058470", "pct": 2.4}, {"name": "이오테크닉스", "symbol": "039030", "pct": -1.1}, {"name": "에이디테크놀로지", "symbol": "200710", "pct": 0.5},
+                        {"name": "와이씨켐", "symbol": "112290", "pct": 7.2}, {"name": "레이크머티리얼즈", "symbol": "281740", "pct": 3.1}, {"name": "티씨케이", "symbol": "064760", "pct": 0.9},
+                        {"name": "원익QnC", "symbol": "074600", "pct": -0.4}, {"name": "미코", "symbol": "059090", "pct": 11.2}, {"name": "하나마이크론", "symbol": "067310", "pct": 2.5},
+                        {"name": "에스앤에스텍", "symbol": "101490", "pct": 1.2}, {"name": "에프에스티", "symbol": "036810", "pct": 4.5}, {"name": "동운아나텍", "symbol": "094170", "pct": -2.3},
+                        {"name": "워트", "symbol": "396470", "pct": 3.8}, {"name": "월덱스", "symbol": "101160", "pct": 0.9}, {"name": "케이엔제이", "symbol": "272110", "pct": 1.4}
+                    ]
+                },
+                {
+                    "name": "반도체장비", "return_pct": -0.1, "count": 94, "cap": "1.2조",
+                    "stocks": [
+                        {"name": "주성엔지니어링", "symbol": "036930", "pct": 2.4}, {"name": "원익IPS", "symbol": "240810", "pct": 0.5}, {"name": "유진테크", "symbol": "084370", "pct": -0.8},
+                        {"name": "에스티아이", "symbol": "039440", "pct": 4.1}, {"name": "피에스케이", "symbol": "319660", "pct": 1.2}, {"name": "케이씨텍", "symbol": "281820", "pct": 0.7},
+                        {"name": "디아이티", "symbol": "110990", "pct": 6.5}, {"name": "코미코", "symbol": "183300", "pct": 1.8}, {"name": "넥스틴", "symbol": "348210", "pct": -0.2},
+                        {"name": "파크시스템스", "symbol": "140860", "pct": 3.3}, {"name": "STI", "symbol": "039440", "pct": 2.1}, {"name": "GST", "symbol": "083450", "pct": 0.8},
+                        {"name": "유니셈", "symbol": "036200", "pct": 1.4}, {"name": "로체시스템즈", "symbol": "071280", "pct": 2.9}, {"name": "테스", "symbol": "095610", "pct": -0.5},
+                        {"name": "한미반도체", "symbol": "042700", "pct": 4.2}, {"name": "고영", "symbol": "098460", "pct": 0.3}, {"name": "인텍플러스", "symbol": "064290", "pct": 1.1}
+                    ]
+                }
+            ],
+            "icon": "⚙️"
+        },
+        {
+            "id": "energy", "name": "전력/에너지", "return_pct": 0.87, "market_cap": "1.8조", "top_stocks": ["두산에너빌리티", "HD현대일렉트릭"],
+            "sub_categories": [
+                {
+                    "name": "원자력발전", "return_pct": 1.2, "count": 22, "cap": "8,400억",
+                    "stocks": [
+                        {"name": "두산에너빌리티", "symbol": "034020", "pct": 1.8}, {"name": "한전기술", "symbol": "052690", "pct": 0.9}, {"name": "에너토크", "symbol": "019990", "pct": 5.2},
+                        {"name": "보성파워텍", "symbol": "006910", "pct": 2.1}, {"name": "우리기술", "symbol": "032820", "pct": 1.5}, {"name": "일진파워", "symbol": "094820", "pct": -0.8},
+                        {"name": "지투파워", "symbol": "388050", "pct": 12.5}, {"name": "오르비텍", "symbol": "046120", "pct": 3.2}, {"name": "한전KPS", "symbol": "051600", "pct": 0.7},
+                        {"name": "비에이치아이", "symbol": "083650", "pct": 4.1}, {"name": "우진", "symbol": "105840", "pct": 2.3}, {"name": "서전기전", "symbol": "189860", "pct": 1.4},
+                        {"name": "일진홀딩스", "symbol": "015860", "pct": 0.9}, {"name": "수산인더스트리", "symbol": "126720", "pct": 0.5}, {"name": "피에스텍", "symbol": "002230", "pct": 1.2}
+                    ]
+                },
+                {
+                    "name": "변압기/전력설비", "return_pct": 2.5, "count": 18, "cap": "6,200억",
+                    "stocks": [
+                        {"name": "HD현대일렉트릭", "symbol": "267260", "pct": 4.1}, {"name": "LS ELECTRIC", "symbol": "010120", "pct": 1.5}, {"name": "효성중공업", "symbol": "298040", "pct": 0.8},
+                        {"name": "제룡전기", "symbol": "033100", "pct": 7.4}, {"name": "일진전기", "symbol": "103590", "pct": 3.2}, {"name": "광명전기", "symbol": "017040", "pct": -0.5},
+                        {"name": "가온전선", "symbol": "000500", "pct": 15.2}, {"name": "대원전선", "symbol": "006340", "pct": 29.8}, {"name": "LS마린솔루션", "symbol": "060370", "pct": 2.1},
+                        {"name": "LS에코에너지", "symbol": "229640", "pct": 4.5}, {"name": "세명전기", "symbol": "017510", "pct": 12.1}, {"name": "재룡산업", "symbol": "147830", "pct": 5.5},
+                        {"name": "산일전기", "symbol": "062040", "pct": 3.4}, {"name": "보성파워텍", "symbol": "006910", "pct": 1.2}
+                    ]
+                }
+            ],
+            "icon": "⚡"
+        },
+        {
+            "id": "defense", "name": "방산", "return_pct": 0.85, "market_cap": "1.4조", "top_stocks": ["한화에어로스페이스", "LIG넥스원"],
+            "sub_categories": [
+                {
+                    "name": "항공우주", "return_pct": 1.5, "count": 12, "cap": "7,500억",
+                    "stocks": [
+                        {"name": "한화에어로스페이스", "symbol": "012450", "pct": 2.1}, {"name": "KAI", "symbol": "047810", "pct": 0.5}, {"name": "한화시스템", "symbol": "272210", "pct": 1.8},
+                        {"name": "쎄트렉아이", "symbol": "099320", "pct": 4.2}, {"name": "컨텍", "symbol": "451760", "pct": -1.2}, {"name": "제노코", "symbol": "361390", "pct": 0.8},
+                        {"name": "인텔리안테크", "symbol": "189300", "pct": 1.5}, {"name": "퍼스텍", "symbol": "010820", "pct": 0.2}
+                    ]
+                },
+                {
+                    "name": "지상방역/유도무기", "return_pct": 0.2, "count": 15, "cap": "6,500억",
+                    "stocks": [
+                        {"name": "LIG넥스원", "symbol": "079550", "pct": 0.7}, {"name": "현대로템", "symbol": "064350", "pct": -0.3}, {"name": "풍산", "symbol": "103140", "pct": 2.5},
+                        {"name": "SNT다이내믹스", "symbol": "003570", "pct": 1.8}, {"name": "빅텍", "symbol": "065450", "pct": -0.5}, {"name": "스페코", "symbol": "013070", "pct": 0.1}
+                    ]
+                }
+            ],
+            "icon": "🛡️"
+        },
+        {
+            "id": "bio", "name": "바이오", "return_pct": -0.22, "market_cap": "1.1조", "top_stocks": ["삼성바이오로직스", "셀트리온"],
+            "sub_categories": [
+                {
+                    "name": "CDMO/대형바이오", "return_pct": 0.1, "count": 8, "cap": "8,200억",
+                    "stocks": [
+                        {"name": "삼성바이오로직스", "symbol": "207940", "pct": 0.5}, {"name": "셀트리온", "symbol": "068270", "pct": -0.2}, {"name": "SK바이오사이언스", "symbol": "302440", "pct": -1.5},
+                        {"name": "에스티팜", "symbol": "237690", "pct": 3.2}, {"name": "바이넥스", "symbol": "053030", "pct": 12.1}, {"name": "대웅제약", "symbol": "069620", "pct": 1.4},
+                        {"name": "한미약품", "symbol": "128940", "pct": -0.8}, {"name": "유한양행", "symbol": "000100", "pct": 0.5}, {"name": "종근당", "symbol": "185750", "pct": 2.1},
+                        {"name": "GC녹십자", "symbol": "006280", "pct": -0.4}, {"name": "에스디바이오센서", "symbol": "137310", "pct": -3.2}, {"name": "휴젤", "symbol": "145020", "pct": 4.5},
+                        {"name": "파마리서치", "symbol": "214450", "pct": 2.8}, {"name": "메디톡스", "symbol": "086900", "pct": -1.1}, {"name": "보령", "symbol": "003850", "pct": 0.9}
+                    ]
+                },
+                {
+                    "name": "신약개발/AI바이오", "return_pct": -0.8, "count": 55, "cap": "2,800억",
+                    "stocks": [
+                        {"name": "HLB", "symbol": "028300", "pct": -2.4}, {"name": "알테오젠", "symbol": "196170", "pct": 5.8}, {"name": "리가켐바이오", "symbol": "141080", "pct": 2.1},
+                        {"name": "에이비엘바이오", "symbol": "298380", "pct": 0.7}, {"name": "보로노이", "symbol": "310210", "pct": 4.5}, {"name": "루닛", "symbol": "328130", "pct": -1.2},
+                        {"name": "뷰노", "symbol": "338220", "pct": 0.8}, {"name": "지아이이노베이션", "symbol": "358120", "pct": 3.4}, {"name": "유틸렉스", "symbol": "263050", "pct": -5.1},
+                        {"name": "앱클론", "symbol": "174900", "pct": 2.1}, {"name": "오스코텍", "symbol": "039200", "pct": 4.2}, {"name": "큐로셀", "symbol": "472390", "pct": 1.5},
+                        {"name": "툴젠", "symbol": "199800", "pct": -0.9}, {"name": "레고켐바이오", "symbol": "141080", "pct": 2.1}, {"name": "펩트론", "symbol": "087010", "pct": 15.2},
+                        {"name": "엔케이맥스", "symbol": "182400", "pct": -8.5}, {"name": "바이오니아", "symbol": "064550", "pct": 1.2}, {"name": "셀리드", "symbol": "299660", "pct": 0.5}
+                    ]
+                }
+            ],
+            "icon": "🧬"
+        },
+        {
+            "id": "battery", "name": "2차전지", "return_pct": 1.81, "market_cap": "6,427억", "top_stocks": ["LG에너지솔루션", "에코프로"],
+            "sub_categories": [
+                {
+                    "name": "배터리 셀", "return_pct": 2.1, "count": 15, "cap": "4.2조",
+                    "stocks": [
+                        {"name": "LG에너지솔루션", "symbol": "373220", "pct": 1.5}, {"name": "삼성SDI", "symbol": "006400", "pct": 2.8}, {"name": "SK이노베이션", "symbol": "096770", "pct": 0.9},
+                        {"name": "금양", "symbol": "001570", "pct": 12.5}, {"name": "에너지테크", "symbol": "298040", "pct": 4.2}, {"name": "파워넷", "symbol": "037030", "pct": 3.4},
+                        {"name": "코이즈", "symbol": "121890", "pct": -2.1}, {"name": "이지트로닉스", "symbol": "377330", "pct": 0.5}, {"name": "필에너지", "symbol": "161580", "pct": 4.5},
+                        {"name": "에이프로", "symbol": "262260", "pct": 0.8}, {"name": "씨아이에스", "symbol": "222080", "pct": 2.1}, {"name": "원준", "symbol": "382840", "pct": 1.3}, 
+                        {"name": "티에스아이", "symbol": "277880", "pct": -0.7}
+                    ]
+                },
+                {
+                    "name": "양극재/소재", "return_pct": 1.2, "count": 42, "cap": "2.2조",
+                    "stocks": [
+                        {"name": "에코프로비엠", "symbol": "247540", "pct": 3.5}, {"name": "포스코퓨처엠", "symbol": "003670", "pct": 1.2}, {"name": "엘앤에프", "symbol": "066970", "pct": -0.5},
+                        {"name": "에코프로", "symbol": "086520", "pct": 1.8}, {"name": "코스모신소재", "symbol": "005070", "pct": 2.1}, {"name": "대주전자재료", "symbol": "078600", "pct": 4.2},
+                        {"name": "나노신소재", "symbol": "121600", "pct": 0.8}, {"name": "천보", "symbol": "217820", "pct": -1.1}, {"name": "엔켐", "symbol": "348370", "pct": 5.5},
+                        {"name": "코스모화학", "symbol": "005420", "pct": 3.2}, {"name": "이수스페셜티케미컬", "symbol": "457190", "pct": 12.1}, {"name": "덕산테코피아", "symbol": "317330", "pct": 4.5},
+                        {"name": "상신이디피", "symbol": "091580", "pct": 0.9}, {"name": "신흥에스이씨", "symbol": "243840", "pct": 1.4}, {"name": "조일알루미늄", "symbol": "000320", "pct": 2.1}, 
+                        {"name": "삼아알루미늄", "symbol": "006110", "pct": -0.3}, {"name": "포스코홀딩스", "symbol": "005490", "pct": 1.2}
+                    ]
+                }
+            ],
+            "icon": "🔋"
+        },
+        {
+            "id": "auto", "name": "자동차", "return_pct": -1.50, "market_cap": "5,232억", "top_stocks": ["현대차", "기아"],
+            "sub_categories": [
+                {
+                    "name": "완성차", "return_pct": -1.8, "count": 5, "cap": "4.1조",
+                    "stocks": [
+                        {"name": "현대차", "symbol": "005380", "pct": -1.5}, {"name": "기아", "symbol": "000270", "pct": -2.1}, {"name": "현대차우", "symbol": "005385", "pct": -0.8},
+                        {"name": "현대차2우B", "symbol": "005387", "pct": -1.1}, {"name": "현대차3우B", "symbol": "005389", "pct": -0.9}
+                    ]
+                },
+                {
+                    "name": "부품/자율주행", "return_pct": -0.5, "count": 62, "cap": "1.1조",
+                    "stocks": [
+                        {"name": "현대모비스", "symbol": "012330", "pct": 0.8}, {"name": "현대위아", "symbol": "011210", "pct": -1.2}, {"name": "HL만도", "symbol": "204320", "pct": 0.5},
+                        {"name": "서연이화", "symbol": "200880", "pct": 2.1}, {"name": "화신", "symbol": "010690", "pct": 1.8}, {"name": "성우하이텍", "symbol": "015750", "pct": -0.3},
+                        {"name": "텔레칩스", "symbol": "054450", "pct": 4.2}, {"name": "칩스앤미디어", "symbol": "094360", "pct": 2.5}, {"name": "스마트레이더시스템", "symbol": "424960", "pct": 0.7},
+                        {"name": "모트렉스", "symbol": "118990", "pct": 1.2}, {"name": "에스엘", "symbol": "005850", "pct": 1.4}, {"name": "엠씨넥스", "symbol": "097520", "pct": 3.1}, 
+                        {"name": "라온피플", "symbol": "300120", "pct": 5.5}, {"name": "퓨런티어", "symbol": "370090", "pct": 4.2}, {"name": "넥스트칩", "symbol": "396270", "pct": -2.1},
+                        {"name": "세방전지", "symbol": "004490", "pct": 0.8}, {"name": "한국앤컴퍼니", "symbol": "000240", "pct": 1.2}
+                    ]
+                }
+            ],
+            "icon": "🚗"
+        },
+        {
+            "id": "it", "name": "IT/플랫폼", "return_pct": -13.95, "market_cap": "7,534억", "top_stocks": ["NAVER", "카카오"],
+            "sub_categories": [
+                {
+                    "name": "인터넷서비스", "return_pct": -15.2, "count": 6, "cap": "6,100억",
+                    "stocks": [
+                        {"name": "NAVER", "symbol": "035420", "pct": -12.5}, {"name": "카카오", "symbol": "035720", "pct": -18.2}, {"name": "카카오페이", "symbol": "377300", "pct": -5.1},
+                        {"name": "카카오뱅크", "symbol": "323410", "pct": -3.2}, {"name": "NHN", "symbol": "181710", "pct": -1.4}, {"name": "카페24", "symbol": "042000", "pct": +12.5},
+                        {"name": "아프리카TV", "symbol": "067160", "pct": +4.2}, {"name": "소프트센", "symbol": "032680", "pct": -0.8}, {"name": "다날", "symbol": "064260", "pct": 1.1}
+                    ]
+                },
+                {
+                    "name": "게임/SW/AI", "return_pct": -8.5, "count": 48, "cap": "1.4조",
+                    "stocks": [
+                        {"name": "크래프톤", "symbol": "259960", "pct": 1.2}, {"name": "엔씨소프트", "symbol": "036570", "pct": -4.5}, {"name": "넷마블", "symbol": "251270", "pct": -2.1},
+                        {"name": "펄어비스", "symbol": "263750", "pct": -0.8}, {"name": "위메이드", "symbol": "112040", "pct": 3.2}, {"name": "데브시스터즈", "symbol": "194480", "pct": 15.5},
+                        {"name": "한글과컴퓨터", "symbol": "030520", "pct": 4.2}, {"name": "이스트소프트", "symbol": "047540", "pct": 2.1}, {"name": "폴라리스AI", "symbol": "042700", "pct": 7.8},
+                        {"name": "마음AI", "symbol": "377450", "pct": 3.4}, {"name": "셀바스AI", "symbol": "108860", "pct": 1.1}, {"name": "코난테크놀로지", "symbol": "402030", "pct": -1.2},
+                        {"name": "솔트룩스", "symbol": "307450", "pct": 0.5}, {"name": "플리토", "symbol": "300080", "pct": 4.2}, {"name": "가온그룹", "symbol": "078890", "pct": 2.3},
+                        {"name": "컴투스", "symbol": "078340", "pct": -0.4}, {"name": "카카오게임즈", "symbol": "293490", "pct": -2.1}, {"name": "더블유게임즈", "symbol": "192080", "pct": 0.7}
+                    ]
+                }
+            ],
+            "icon": "💻"
+        },
+        {
+            "id": "finance", "name": "금융", "return_pct": -1.48, "market_cap": "4.0조", "top_stocks": ["KB금융", "신한지주"],
+            "sub_categories": [
+                {
+                    "name": "은행/지주", "return_pct": -1.6, "count": 12, "cap": "3.2조",
+                    "stocks": [
+                        {"name": "KB금융", "symbol": "105560", "pct": -2.1}, {"name": "신한지주", "symbol": "055550", "pct": -1.5}, {"name": "하나금융지주", "symbol": "086790", "pct": -0.8},
+                        {"name": "우리금융지주", "symbol": "316140", "pct": -1.2}, {"name": "메리츠금융지주", "symbol": "138040", "pct": 0.8}, {"name": "삼성생명", "symbol": "032830", "pct": 1.5},
+                        {"name": "삼성화재", "symbol": "000810", "pct": 2.1}, {"name": "DB손해보험", "symbol": "005830", "pct": 0.7}, {"name": "현대해상", "symbol": "001450", "pct": 1.2},
+                        {"name": "한화생명", "symbol": "088350", "pct": -0.5}, {"name": "키움증권", "symbol": "039490", "pct": 3.4}, {"name": "미래에셋증권", "symbol": "006800", "pct": 0.9},
+                        {"name": "한국금융지주", "symbol": "071050", "pct": 1.1}, {"name": "삼성증권", "symbol": "016360", "pct": 1.3}, {"name": "NH투자증권", "symbol": "005940", "pct": 0.6}
+                    ]
+                }
+            ],
+            "icon": "🏛️"
+        },
+        {
+            "id": "infra", "name": "인프라", "return_pct": 3.42, "market_cap": "9,505억", "top_stocks": ["삼성물산", "GS건설"],
+            "sub_categories": [
+                {
+                    "name": "건설/플랜트", "return_pct": 4.1, "count": 25, "cap": "7,200억",
+                    "stocks": [
+                        {"name": "삼성물산", "symbol": "028260", "pct": 1.2}, {"name": "현대건설", "symbol": "000720", "pct": 3.5}, {"name": "GS건설", "symbol": "006360", "pct": 5.2},
+                        {"name": "DL이앤씨", "symbol": "375500", "pct": 2.1}, {"name": "대우건설", "symbol": "047040", "pct": 1.8}, {"name": "HDC현대산업개발", "symbol": "294870", "pct": 0.9},
+                        {"name": "삼성엔지니어링", "symbol": "028050", "pct": 2.4}, {"name": "계룡건설", "symbol": "013580", "pct": 1.1}, {"name": "금호건설", "symbol": "002990", "pct": -0.7},
+                        {"name": "동부건설", "symbol": "005960", "pct": 0.3}, {"name": "코오롱글로벌", "symbol": "003070", "pct": 1.5}, {"name": "서희건설", "symbol": "035890", "pct": 4.2},
+                        {"name": "남광토건", "symbol": "001260", "pct": 2.1}, {"name": "일성건설", "symbol": "013360", "pct": 1.8}
+                    ]
+                }
+            ],
+            "icon": "🏢"
+        },
+        {
+            "id": "ship", "name": "조선/해운", "return_pct": -1.12, "market_cap": "2.4조", "top_stocks": ["HD현대중공업", "HMM"],
+            "sub_categories": [
+                {
+                    "name": "조선제조", "return_pct": -1.5, "count": 10, "cap": "1.9조",
+                    "stocks": [
+                        {"name": "HD현대중공업", "symbol": "329180", "pct": -1.2}, {"name": "삼성중공업", "symbol": "010140", "pct": -2.5}, {"name": "한화오션", "symbol": "042660", "pct": 0.8},
+                        {"name": "HD한국조선해양", "symbol": "009540", "pct": 1.5}, {"name": "HD현대미포", "symbol": "010620", "pct": -0.5}, {"name": "STX중공업", "symbol": "071970", "pct": 3.2},
+                        {"name": "현대힘스", "symbol": "460930", "pct": 4.5}, {"name": "한진중공업", "symbol": "097230", "pct": 0.2}
+                    ]
+                },
+                {
+                    "name": "기자재/해운", "return_pct": 0.8, "count": 15, "cap": "584억",
+                    "stocks": [
+                        {"name": "HMM", "symbol": "011200", "pct": 2.1}, {"name": "대한해운", "symbol": "005880", "pct": 0.5}, {"name": "흥아해운", "symbol": "003280", "pct": 7.2},
+                        {"name": "세진중공업", "symbol": "075580", "pct": 1.5}, {"name": "태웅", "symbol": "044490", "pct": 1.1}, {"name": "동방", "symbol": "004140", "pct": 2.4},
+                        {"name": "KCTC", "symbol": "009070", "pct": 0.9}, {"name": "팬오션", "symbol": "028670", "pct": 1.2}, {"name": "와이엔텍", "symbol": "067390", "pct": 0.6},
+                        {"name": "인터지스", "symbol": "129260", "pct": 0.3}, {"name": "한익스프레스", "symbol": "014130", "pct": 1.8}
+                    ]
+                }
+            ],
+            "icon": "🚢"
+        },
+        {
+            "id": "material", "name": "화학/소재", "return_pct": 3.14, "market_cap": "6.4조", "top_stocks": ["LG화학", "포스코홀딩스"],
+            "sub_categories": [
+                {
+                    "name": "기초화학/철강", "return_pct": 3.5, "count": 35, "cap": "4.2조",
+                    "stocks": [
+                        {"name": "LG화학", "symbol": "051910", "pct": 2.1}, {"name": "포스코홀딩스", "symbol": "005490", "pct": 1.5}, {"name": "금양", "symbol": "001570", "pct": 12.5},
+                        {"name": "롯데케미칼", "symbol": "011170", "pct": -0.8}, {"name": "대한유화", "symbol": "006650", "pct": 0.5}, {"name": "TCC스틸", "symbol": "002710", "pct": 4.2},
+                        {"name": "효성티앤씨", "symbol": "298020", "pct": 3.1}, {"name": "효성첨단소재", "symbol": "298050", "pct": 1.8}, {"name": "코오롱인더", "symbol": "120110", "pct": 0.9},
+                        {"name": "한화솔루션", "symbol": "009830", "pct": -2.4}, {"name": "OCI", "symbol": "010060", "pct": 1.1}, {"name": "포스코스틸리온", "symbol": "058430", "pct": 0.7},
+                        {"name": "현대제철", "symbol": "004020", "pct": 0.5}, {"name": "동국제강", "symbol": "001230", "pct": 1.3}, {"name": "세아베스틸", "symbol": "001430", "pct": 0.6}
+                    ]
+                }
+            ],
+            "icon": "🧪"
+        },
+        {
+            "id": "machinery", "name": "기계/로봇", "return_pct": -0.15, "market_cap": "4.2조", "top_stocks": ["두산로보틱스", "레인보우로보틱스"],
+            "sub_categories": [
+                {
+                    "name": "지능형로봇/AI", "return_pct": 0.5, "count": 32, "cap": "2.1조",
+                    "stocks": [
+                        {"name": "두산로보틱스", "symbol": "454910", "pct": 1.5}, {"name": "레인보우로보틱스", "symbol": "272410", "pct": -0.8}, {"name": "뉴로메카", "symbol": "348340", "pct": 4.2},
+                        {"name": "에스비비테크", "symbol": "307330", "pct": 2.1}, {"name": "로보티즈", "symbol": "108490", "pct": 0.7}, {"name": "엔젤로보틱스", "symbol": "455910", "pct": 15.2},
+                        {"name": "에스피지", "symbol": "058610", "pct": 3.4}, {"name": "이랜시스", "symbol": "264850", "pct": 2.1}, {"name": "유진로봇", "symbol": "056080", "pct": 1.1},
+                        {"name": "로보로보", "symbol": "215100", "pct": 0.9}, {"name": "에브리봇", "symbol": "270870", "pct": -5.1}, {"name": "티로보틱스", "symbol": "117230", "pct": 1.2},
+                        {"name": "해성티피씨", "symbol": "059270", "pct": 2.1}, {"name": "RS오토메이션", "symbol": "140670", "pct": 0.8}, {"name": "아진엑스텍", "symbol": "059120", "pct": 1.3}
+                    ]
+                }
+            ],
+            "icon": "🤖"
+        }
+    ]
+
+    # New Highs (신고가 돌파 종목)
+    new_highs = [
+        {"path": "반도체 > 반도체소재", "name": "솔브레인홀딩스", "symbol": "036530", "pct": 7.6, "rank": 1},
+        {"path": "반도체 > 반도체장비", "name": "한미반도체", "symbol": "042700", "pct": 2.8, "rank": 2},
+        {"path": "반도체 > 메모리", "name": "삼성전자", "symbol": "005930", "pct": -0.6, "rank": 3},
+        {"path": "전력/에너지 > 원자력", "name": "두산에너빌리티", "symbol": "034020", "pct": 5.8, "rank": 4},
+        {"path": "전력/에너지 > 신재생", "name": "신성이엔지", "symbol": "011930", "pct": 4.0, "rank": 5},
+        {"path": "전력/에너지 > 전력기기", "name": "HD현대일렉트릭", "symbol": "267260", "pct": 0.7, "rank": 6},
+        {"path": "인프라 > 건설", "name": "GS건설", "symbol": "006360", "pct": 15.0, "rank": 7}
+    ]
+
+    # Investment Strategies (투자 전략 살펴보기)
+    strategies = [
+        {"id": 1, "name": "모멘텀 Easy", "pct": 1150.59, "daily_change": 0.01, "total_change": -233.90},
+        {"id": 2, "name": "피크 Easy", "pct": 1601.18, "daily_change": 105.57, "total_change": 86.29},
+        {"id": 3, "name": "밸류 Easy", "pct": 314.95, "daily_change": 50.52, "total_change": 70.19}
+    ]
+
     final_output = {
-        "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "last_updated": datetime.now().strftime("%m월 %d일 %H:%M 기준"),
+        "market_sentiment": sentiment,
         "macro_indicators": macro_data,
-        "top_momentum_stocks": momentum_data
+        "top_momentum_stocks": momentum_data,
+        "sector_performance": sector_performance,
+        "テーマ_rankings": theme_rankings, # Keeping consistency with key change if needed
+        "theme_rankings": theme_rankings,
+        "new_highs": new_highs,
+        "investment_strategies": strategies
     }
+    
     with open("data.json", "w", encoding="utf-8") as f:
-        json.dump(final_output, f, indent=4)
+        json.dump(final_output, f, indent=4, ensure_ascii=False)
+    print("완료! data.json에 저장되었습니다.")
