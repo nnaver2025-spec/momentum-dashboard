@@ -1,14 +1,14 @@
 {
-    "last_updated": "04월 27일 23:47",
+    "last_updated": "04월 28일 23:50",
     "market_sentiment": "Green",
     "macro_indicators": {
-        "KOSPI": 6475.63,
-        "KOSDAQ": 1203.84,
-        "USD_KRW": 1473.89
+        "KOSPI": 6615.03,
+        "KOSDAQ": 1226.18,
+        "USD_KRW": 1473.0
     },
     "market_overview": {
         "KOSPI": {
-            "price": "6,615.03",
+            "price": "6,641.02",
             "change": "0.00",
             "change_pct": "0.00",
             "foreign": "0",
@@ -16,7 +16,7 @@
             "individual": "0"
         },
         "KOSDAQ": {
-            "price": "1,226.18",
+            "price": "1,215.58",
             "change": "0.00",
             "change_pct": "0.00",
             "foreign": "0",
@@ -26,114 +26,114 @@
     },
     "top_momentum_stocks": [
         {
-            "ticker": "006400",
-            "symbol": "006400",
-            "name": "삼성SDI",
-            "sector": "배터리",
-            "price": 635000,
-            "ma50": 444730,
-            "ma200": 306510,
-            "high52w": 659000,
-            "return_3mo_pct": 70.24
-        },
-        {
             "ticker": "000660",
             "symbol": "000660",
             "name": "SK하이닉스",
             "sector": "IT",
-            "price": 1292000,
-            "ma50": 993405,
-            "ma200": 607496,
-            "high52w": 1292000,
-            "return_3mo_pct": 68.76
+            "price": 1300000,
+            "ma50": 1002237,
+            "ma200": 612606,
+            "high52w": 1300000,
+            "return_3mo_pct": 76.96
+        },
+        {
+            "ticker": "006400",
+            "symbol": "006400",
+            "name": "삼성SDI",
+            "sector": "배터리",
+            "price": 680000,
+            "ma50": 450790,
+            "ma200": 309015,
+            "high52w": 680000,
+            "return_3mo_pct": 75.71
         },
         {
             "ticker": "005930",
             "symbol": "005930",
             "name": "삼성전자",
             "sector": "IT",
-            "price": 224500,
-            "ma50": 196083,
-            "ma200": 122283,
+            "price": 222000,
+            "ma50": 197167,
+            "ma200": 123092,
             "high52w": 224500,
-            "return_3mo_pct": 47.6
+            "return_3mo_pct": 45.96
         },
         {
             "ticker": "034730",
             "symbol": "034730",
             "name": "SK",
             "sector": "지주사",
-            "price": 412000,
-            "ma50": 350254,
-            "ma200": 264366,
+            "price": 414000,
+            "ma50": 351909,
+            "ma200": 265398,
             "high52w": 414037,
-            "return_3mo_pct": 41.79
-        },
-        {
-            "ticker": "096770",
-            "symbol": "096770",
-            "name": "SK이노베이션",
-            "sector": "배터리",
-            "price": 130400,
-            "ma50": 120692,
-            "ma200": 113626,
-            "high52w": 137700,
-            "return_3mo_pct": 17.06
-        },
-        {
-            "ticker": "036570",
-            "symbol": "036570",
-            "name": "엔씨소프트",
-            "sector": "게임",
-            "price": 261500,
-            "ma50": 229469,
-            "ma200": 215145,
-            "high52w": 275000,
-            "return_3mo_pct": 15.78
+            "return_3mo_pct": 45.68
         },
         {
             "ticker": "005490",
             "symbol": "005490",
             "name": "POSCO홀딩스",
             "sector": "철강",
-            "price": 417500,
-            "ma50": 364657,
-            "ma200": 320769,
-            "high52w": 421500,
-            "return_3mo_pct": 14.15
+            "price": 466500,
+            "ma50": 366593,
+            "ma200": 321693,
+            "high52w": 466500,
+            "return_3mo_pct": 28.6
         },
         {
-            "ticker": "373220",
-            "symbol": "373220",
-            "name": "LG에너지솔루션",
+            "ticker": "036570",
+            "symbol": "036570",
+            "name": "엔씨소프트",
+            "sector": "게임",
+            "price": 267500,
+            "ma50": 230571,
+            "ma200": 215480,
+            "high52w": 275000,
+            "return_3mo_pct": 16.89
+        },
+        {
+            "ticker": "096770",
+            "symbol": "096770",
+            "name": "SK이노베이션",
             "sector": "배터리",
-            "price": 464000,
-            "ma50": 402960,
-            "ma200": 394632,
-            "high52w": 514000,
-            "return_3mo_pct": 12.62
+            "price": 133000,
+            "ma50": 121082,
+            "ma200": 113702,
+            "high52w": 137700,
+            "return_3mo_pct": 16.56
         },
         {
             "ticker": "051910",
             "symbol": "051910",
             "name": "LG화학",
             "sector": "화학",
-            "price": 379500,
-            "ma50": 334060,
-            "ma200": 325104,
+            "price": 394000,
+            "ma50": 335531,
+            "ma200": 325881,
             "high52w": 416819,
-            "return_3mo_pct": 6.69
+            "return_3mo_pct": 13.46
         },
         {
-            "ticker": "003550",
-            "symbol": "003550",
-            "name": "LG",
-            "sector": "지주사",
-            "price": 95500,
-            "ma50": 91756,
-            "ma200": 81533,
-            "high52w": 105158,
-            "return_3mo_pct": 4.83
+            "ticker": "373220",
+            "symbol": "373220",
+            "name": "LG에너지솔루션",
+            "sector": "배터리",
+            "price": 472000,
+            "ma50": 404560,
+            "ma200": 395480,
+            "high52w": 514000,
+            "return_3mo_pct": 13.46
+        },
+        {
+            "ticker": "005380",
+            "symbol": "005380",
+            "name": "현대차",
+            "sector": "자동차",
+            "price": 555000,
+            "ma50": 516821,
+            "ma200": 337475,
+            "high52w": 674000,
+            "return_3mo_pct": 13.19
         }
     ],
     "sector_performance": [
