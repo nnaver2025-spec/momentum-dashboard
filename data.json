@@ -1,10 +1,10 @@
 {
-    "last_updated": "04월 30일 23:46",
-    "market_sentiment": "Yellow",
+    "last_updated": "05월 01일 23:45",
+    "market_sentiment": "Green",
     "macro_indicators": {
-        "KOSPI": NaN,
-        "KOSDAQ": 1220.26,
-        "USD_KRW": 1474.0
+        "KOSPI": 6598.87,
+        "KOSDAQ": 1192.35,
+        "USD_KRW": 1471.22
     },
     "market_overview": {
         "KOSPI": {
@@ -64,10 +64,10 @@
             "name": "삼성전자",
             "sector": "IT",
             "price": 220500,
-            "ma50": 198901,
-            "ma200": 124695,
+            "ma50": 198694,
+            "ma200": 124489,
             "high52w": 226000,
-            "return_3mo_pct": 35.78
+            "return_3mo_pct": 36.06
         },
         {
             "ticker": "096770",
