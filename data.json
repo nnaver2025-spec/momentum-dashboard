@@ -1,27 +1,27 @@
 {
-    "last_updated": "05월 04일 23:48",
-    "market_sentiment": "Yellow",
+    "last_updated": "05월 05일 23:42",
+    "market_sentiment": "Green",
     "macro_indicators": {
-        "KOSPI": NaN,
-        "KOSDAQ": 1192.35,
-        "USD_KRW": 1471.73
+        "KOSPI": 6936.99,
+        "KOSDAQ": 1213.74,
+        "USD_KRW": 1474.88
     },
     "market_overview": {
         "KOSPI": {
             "price": "6,936.99",
-            "change": "338.12",
-            "change_pct": "5.12",
-            "foreign": "+29,308",
-            "institution": "+20,098",
-            "individual": "-47,936"
+            "change": "0.00",
+            "change_pct": "0.00",
+            "foreign": "0",
+            "institution": "0",
+            "individual": "0"
         },
         "KOSDAQ": {
             "price": "1,213.74",
-            "change": "21.39",
-            "change_pct": "1.79",
-            "foreign": "+5,548",
-            "institution": "-729",
-            "individual": "-4,422"
+            "change": "0.00",
+            "change_pct": "0.00",
+            "foreign": "0",
+            "institution": "0",
+            "individual": "0"
         }
     },
     "top_momentum_stocks": [
