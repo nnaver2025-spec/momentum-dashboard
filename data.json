@@ -1,27 +1,27 @@
 {
-    "last_updated": "05월 23일 00:00",
-    "market_sentiment": "Yellow",
+    "last_updated": "05월 26일 00:01",
+    "market_sentiment": "Green",
     "macro_indicators": {
-        "KOSPI": NaN,
-        "KOSDAQ": NaN,
-        "USD_KRW": 1520.53
+        "KOSPI": 7847.71,
+        "KOSDAQ": 1161.13,
+        "USD_KRW": 1513.88
     },
     "market_overview": {
         "KOSPI": {
             "price": "7,847.71",
-            "change": "32.12",
-            "change_pct": "0.41",
-            "foreign": "-19,221",
-            "institution": "+7,583",
-            "individual": "+10,655"
+            "change": "0.00",
+            "change_pct": "0.00",
+            "foreign": "0",
+            "institution": "0",
+            "individual": "0"
         },
         "KOSDAQ": {
             "price": "1,161.13",
-            "change": "55.16",
-            "change_pct": "4.99",
-            "foreign": "+5,975",
-            "institution": "+3,010",
-            "individual": "-8,793"
+            "change": "0.00",
+            "change_pct": "0.00",
+            "foreign": "0",
+            "institution": "0",
+            "individual": "0"
         }
     },
     "top_momentum_stocks": [
@@ -103,17 +103,6 @@
             "return_3mo_pct": 19.56
         },
         {
-            "ticker": "005490",
-            "symbol": "005490",
-            "name": "POSCO홀딩스",
-            "sector": "철강",
-            "price": 447500,
-            "ma50": 400080,
-            "ma200": 335003,
-            "high52w": 535000,
-            "return_3mo_pct": 14.28
-        },
-        {
             "ticker": "051910",
             "symbol": "051910",
             "name": "LG화학",
@@ -134,6 +123,17 @@
             "ma200": 128893,
             "high52w": 197337,
             "return_3mo_pct": 0.14
+        },
+        {
+            "ticker": "373220",
+            "symbol": "373220",
+            "name": "LG에너지솔루션",
+            "sector": "배터리",
+            "price": 398500,
+            "ma50": 419660,
+            "ma200": 404942,
+            "high52w": 514000,
+            "return_3mo_pct": -0.75
         }
     ],
     "sector_performance": [
