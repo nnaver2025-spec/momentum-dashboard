@@ -1,14 +1,14 @@
 {
-    "last_updated": "07월 13일 23:48",
+    "last_updated": "07월 14일 23:46",
     "market_sentiment": "Yellow",
     "macro_indicators": {
-        "KOSPI": 7475.94,
-        "KOSDAQ": 837.43,
-        "USD_KRW": 1497.91
+        "KOSPI": 6806.93,
+        "KOSDAQ": 799.36,
+        "USD_KRW": 1487.88
     },
     "market_overview": {
         "KOSPI": {
-            "price": "6,806.93",
+            "price": "6,856.83",
             "change": "0.00",
             "change_pct": "0.00",
             "foreign": "0",
@@ -16,7 +16,7 @@
             "individual": "0"
         },
         "KOSDAQ": {
-            "price": "799.36",
+            "price": "783.98",
             "change": "0.00",
             "change_pct": "0.00",
             "foreign": "0",
@@ -30,110 +30,110 @@
             "symbol": "000660",
             "name": "SK하이닉스",
             "sector": "IT",
-            "price": 1845000,
-            "ma50": 2153833,
-            "ma200": 1083443,
+            "price": 1913000,
+            "ma50": 2166237,
+            "ma200": 1091370,
             "high52w": 2919000,
-            "return_3mo_pct": 79.68
+            "return_3mo_pct": 83.97
         },
         {
             "ticker": "034730",
             "symbol": "034730",
             "name": "SK",
             "sector": "지주사",
-            "price": 583000,
-            "ma50": 627930,
-            "ma200": 372909,
+            "price": 562000,
+            "ma50": 630670,
+            "ma200": 374629,
             "high52w": 858000,
-            "return_3mo_pct": 64.69
+            "return_3mo_pct": 60.8
         },
         {
             "ticker": "005930",
             "symbol": "005930",
             "name": "삼성전자",
             "sector": "IT",
-            "price": 254500,
-            "ma50": 303990,
-            "ma200": 181980,
+            "price": 263000,
+            "ma50": 304730,
+            "ma200": 182922,
             "high52w": 362500,
-            "return_3mo_pct": 23.54
+            "return_3mo_pct": 30.85
         },
         {
             "ticker": "003550",
             "symbol": "003550",
             "name": "LG",
             "sector": "지주사",
-            "price": 99300,
-            "ma50": 110640,
-            "ma200": 90624,
+            "price": 96400,
+            "ma50": 110602,
+            "ma200": 90736,
             "high52w": 165800,
-            "return_3mo_pct": 6.77
+            "return_3mo_pct": 5.93
         },
         {
             "ticker": "036570",
             "symbol": "036570",
             "name": "엔씨소프트",
             "sector": "게임",
-            "price": 240500,
-            "ma50": 264140,
-            "ma200": 231235,
+            "price": 227500,
+            "ma50": 263140,
+            "ma200": 231278,
             "high52w": 338000,
-            "return_3mo_pct": 0.21
+            "return_3mo_pct": -4.81
         },
         {
             "ticker": "000270",
             "symbol": "000270",
             "name": "기아",
             "sector": "자동차",
-            "price": 143500,
-            "ma50": 157590,
-            "ma200": 138255,
+            "price": 139600,
+            "ma50": 157244,
+            "ma200": 138446,
             "high52w": 197337,
-            "return_3mo_pct": -3.69
-        },
-        {
-            "ticker": "035420",
-            "symbol": "035420",
-            "name": "NAVER",
-            "sector": "서비스",
-            "price": 188000,
-            "ma50": 216144,
-            "ma200": 234088,
-            "high52w": 284016,
-            "return_3mo_pct": -6.93
+            "return_3mo_pct": -5.29
         },
         {
             "ticker": "068270",
             "symbol": "068270",
             "name": "셀트리온",
             "sector": "바이오",
-            "price": 175100,
-            "ma50": 177485,
-            "ma200": 184468,
+            "price": 172800,
+            "ma50": 177055,
+            "ma200": 184518,
             "high52w": 236666,
-            "return_3mo_pct": -7.93
+            "return_3mo_pct": -7.05
+        },
+        {
+            "ticker": "035420",
+            "symbol": "035420",
+            "name": "NAVER",
+            "sector": "서비스",
+            "price": 183200,
+            "ma50": 215408,
+            "ma200": 233837,
+            "high52w": 284016,
+            "return_3mo_pct": -7.94
         },
         {
             "ticker": "006400",
             "symbol": "006400",
             "name": "삼성SDI",
             "sector": "배터리",
-            "price": 440000,
-            "ma50": 563940,
-            "ma200": 400077,
+            "price": 427500,
+            "ma50": 558250,
+            "ma200": 401195,
             "high52w": 712000,
-            "return_3mo_pct": -8.52
+            "return_3mo_pct": -10.47
         },
         {
             "ticker": "005380",
             "symbol": "005380",
             "name": "현대차",
             "sector": "자동차",
-            "price": 444000,
-            "ma50": 591888,
-            "ma200": 431716,
+            "price": 424500,
+            "ma50": 589299,
+            "ma200": 432740,
             "high52w": 750000,
-            "return_3mo_pct": -8.96
+            "return_3mo_pct": -10.96
         }
     ],
     "sector_performance": [
