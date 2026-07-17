@@ -1,10 +1,10 @@
 {
-    "last_updated": "07월 16일 23:53",
+    "last_updated": "07월 17일 23:46",
     "market_sentiment": "Yellow",
     "macro_indicators": {
-        "KOSPI": NaN,
-        "KOSDAQ": 829.43,
-        "USD_KRW": 1478.79
+        "KOSPI": 6820.6,
+        "KOSDAQ": 791.84,
+        "USD_KRW": 1487.46
     },
     "market_overview": {
         "KOSPI": {
