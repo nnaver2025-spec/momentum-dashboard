@@ -1,27 +1,27 @@
 {
-    "last_updated": "07월 24일 23:58",
+    "last_updated": "07월 27일 23:57",
     "market_sentiment": "Yellow",
     "macro_indicators": {
-        "KOSPI": NaN,
-        "KOSDAQ": NaN,
-        "USD_KRW": 1459.42
+        "KOSPI": 7096.89,
+        "KOSDAQ": 748.22,
+        "USD_KRW": 1465.22
     },
     "market_overview": {
         "KOSPI": {
-            "price": "6,690.62",
-            "change": "-406.27",
-            "change_pct": "-5.72",
-            "foreign": "-32,683",
-            "institution": "-19,514",
-            "individual": "+51,782"
+            "price": "6,755.75",
+            "change": "0.00",
+            "change_pct": "0.00",
+            "foreign": "0",
+            "institution": "0",
+            "individual": "0"
         },
         "KOSDAQ": {
-            "price": "748.22",
-            "change": "-42.06",
-            "change_pct": "-5.32",
-            "foreign": "-1,315",
-            "institution": "-3,580",
-            "individual": "+4,881"
+            "price": "764.86",
+            "change": "0.00",
+            "change_pct": "0.00",
+            "foreign": "0",
+            "institution": "0",
+            "individual": "0"
         }
     },
     "top_momentum_stocks": [
@@ -30,110 +30,110 @@
             "symbol": "034730",
             "name": "SK",
             "sector": "지주사",
-            "price": 630000,
-            "ma50": 643620,
-            "ma200": 388235,
+            "price": 623000,
+            "ma50": 645080,
+            "ma200": 390324,
             "high52w": 858000,
-            "return_3mo_pct": 65.14
+            "return_3mo_pct": 57.12
         },
         {
             "ticker": "000660",
             "symbol": "000660",
             "name": "SK하이닉스",
             "sector": "IT",
-            "price": 1759000,
-            "ma50": 2199135,
-            "ma200": 1144375,
+            "price": 1816000,
+            "ma50": 2195942,
+            "ma200": 1151678,
             "high52w": 2919000,
-            "return_3mo_pct": 43.85
+            "return_3mo_pct": 48.27
         },
         {
             "ticker": "005930",
             "symbol": "005930",
             "name": "삼성전자",
             "sector": "IT",
-            "price": 249500,
-            "ma50": 304610,
-            "ma200": 189201,
+            "price": 254000,
+            "ma50": 304010,
+            "ma200": 190046,
             "high52w": 362500,
-            "return_3mo_pct": 14.71
-        },
-        {
-            "ticker": "003550",
-            "symbol": "003550",
-            "name": "LG",
-            "sector": "지주사",
-            "price": 97900,
-            "ma50": 109776,
-            "ma200": 91604,
-            "high52w": 165800,
-            "return_3mo_pct": 2.3
-        },
-        {
-            "ticker": "207940",
-            "symbol": "207940",
-            "name": "삼성바이오로직스",
-            "sector": "바이오",
-            "price": 1518000,
-            "ma50": 1372060,
-            "ma200": 1611814,
-            "high52w": 1965000,
-            "return_3mo_pct": -2.75
-        },
-        {
-            "ticker": "096770",
-            "symbol": "096770",
-            "name": "SK이노베이션",
-            "sector": "배터리",
-            "price": 130100,
-            "ma50": 110154,
-            "ma200": 115348,
-            "high52w": 149800,
-            "return_3mo_pct": -2.91
+            "return_3mo_pct": 13.14
         },
         {
             "ticker": "035420",
             "symbol": "035420",
             "name": "NAVER",
             "sector": "서비스",
-            "price": 207500,
-            "ma50": 213746,
-            "ma200": 232685,
+            "price": 225000,
+            "ma50": 214216,
+            "ma200": 232553,
             "high52w": 284016,
-            "return_3mo_pct": -3.04
+            "return_3mo_pct": 3.45
+        },
+        {
+            "ticker": "207940",
+            "symbol": "207940",
+            "name": "삼성바이오로직스",
+            "sector": "바이오",
+            "price": 1545000,
+            "ma50": 1374760,
+            "ma200": 1611682,
+            "high52w": 1965000,
+            "return_3mo_pct": 2.05
+        },
+        {
+            "ticker": "003550",
+            "symbol": "003550",
+            "name": "LG",
+            "sector": "지주사",
+            "price": 97700,
+            "ma50": 109556,
+            "ma200": 91729,
+            "high52w": 165800,
+            "return_3mo_pct": 0.31
         },
         {
             "ticker": "068270",
             "symbol": "068270",
             "name": "셀트리온",
             "sector": "바이오",
-            "price": 177600,
-            "ma50": 175110,
-            "ma200": 184878,
+            "price": 178700,
+            "ma50": 175056,
+            "ma200": 184928,
             "high52w": 236666,
-            "return_3mo_pct": -8.59
+            "return_3mo_pct": -8.92
+        },
+        {
+            "ticker": "096770",
+            "symbol": "096770",
+            "name": "SK이노베이션",
+            "sector": "배터리",
+            "price": 116700,
+            "ma50": 109894,
+            "ma200": 115413,
+            "high52w": 149800,
+            "return_3mo_pct": -12.39
         },
         {
             "ticker": "036570",
             "symbol": "036570",
             "name": "엔씨소프트",
             "sector": "게임",
-            "price": 228000,
-            "ma50": 257850,
-            "ma200": 230914,
+            "price": 232500,
+            "ma50": 257240,
+            "ma200": 230965,
             "high52w": 338000,
-            "return_3mo_pct": -17.09
+            "return_3mo_pct": -14.21
         },
         {
             "ticker": "000270",
             "symbol": "000270",
             "name": "기아",
             "sector": "자동차",
-            "price": 130500,
-            "ma50": 154862,
-            "ma200": 140059,
+            "price": 130400,
+            "ma50": 153880,
+            "ma200": 140222,
             "high52w": 197337,
-            "return_3mo_pct": -18.44
+            "return_3mo_pct": -17.68
         }
     ],
     "sector_performance": [
