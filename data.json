@@ -1,139 +1,139 @@
 {
-    "last_updated": "08월 13일 23:34",
+    "last_updated": "08월 14일 23:15",
     "market_sentiment": "Yellow",
     "macro_indicators": {
-        "KOSPI": 6579.04,
-        "KOSDAQ": 858.91,
-        "USD_KRW": 1418.12
+        "KOSPI": NaN,
+        "KOSDAQ": NaN,
+        "USD_KRW": 1416.48
     },
     "market_overview": {
         "KOSPI": {
-            "price": "6,813.34",
-            "change": "0.00",
-            "change_pct": "0.00",
-            "foreign": "0",
-            "institution": "0",
-            "individual": "0"
+            "price": "6,977.94",
+            "change": "164.60",
+            "change_pct": "2.42",
+            "foreign": "+30,387",
+            "institution": "-10,298",
+            "individual": "-19,820"
         },
         "KOSDAQ": {
-            "price": "861.37",
-            "change": "0.00",
-            "change_pct": "0.00",
-            "foreign": "0",
-            "institution": "0",
-            "individual": "0"
+            "price": "864.65",
+            "change": "3.28",
+            "change_pct": "0.38",
+            "foreign": "-659",
+            "institution": "-2,524",
+            "individual": "+3,145"
         }
     },
     "top_momentum_stocks": [
+        {
+            "ticker": "034730",
+            "symbol": "034730",
+            "name": "SK",
+            "sector": "지주사",
+            "price": 585000,
+            "ma50": 621212,
+            "ma200": 411121,
+            "high52w": 855672,
+            "return_3mo_pct": 16.62
+        },
         {
             "ticker": "068270",
             "symbol": "068270",
             "name": "셀트리온",
             "sector": "바이오",
-            "price": 202000,
-            "ma50": 178066,
-            "ma200": 186659,
+            "price": 201000,
+            "ma50": 178556,
+            "ma200": 186819,
             "high52w": 236666,
-            "return_3mo_pct": 8.71
+            "return_3mo_pct": 11.78
         },
         {
             "ticker": "207940",
             "symbol": "207940",
             "name": "삼성바이오로직스",
             "sector": "바이오",
-            "price": 1564000,
-            "ma50": 1409860,
-            "ma200": 1605039,
+            "price": 1548000,
+            "ma50": 1413820,
+            "ma200": 1603761,
             "high52w": 1965000,
-            "return_3mo_pct": 7.94
-        },
-        {
-            "ticker": "035420",
-            "symbol": "035420",
-            "name": "NAVER",
-            "sector": "서비스",
-            "price": 226500,
-            "ma50": 213862,
-            "ma200": 229722,
-            "high52w": 284016,
-            "return_3mo_pct": 6.34
-        },
-        {
-            "ticker": "034730",
-            "symbol": "034730",
-            "name": "SK",
-            "sector": "지주사",
-            "price": 551500,
-            "ma50": 622835,
-            "ma200": 409345,
-            "high52w": 855672,
-            "return_3mo_pct": 2.22
-        },
-        {
-            "ticker": "003550",
-            "symbol": "003550",
-            "name": "LG",
-            "sector": "지주사",
-            "price": 113700,
-            "ma50": 104070,
-            "ma200": 93807,
-            "high52w": 165800,
-            "return_3mo_pct": -2.82
+            "return_3mo_pct": 9.09
         },
         {
             "ticker": "096770",
             "symbol": "096770",
             "name": "SK이노베이션",
             "sector": "배터리",
-            "price": 121700,
-            "ma50": 108744,
-            "ma200": 115883,
+            "price": 128700,
+            "ma50": 108982,
+            "ma200": 115895,
             "high52w": 149800,
-            "return_3mo_pct": -3.95
+            "return_3mo_pct": 4.21
         },
         {
             "ticker": "005930",
             "symbol": "005930",
             "name": "삼성전자",
             "sector": "IT",
-            "price": 268000,
-            "ma50": 286985,
-            "ma200": 199344,
+            "price": 274500,
+            "ma50": 285452,
+            "ma200": 200227,
             "high52w": 362100,
-            "return_3mo_pct": -9.36
+            "return_3mo_pct": 1.59
         },
         {
-            "ticker": "251270",
-            "symbol": "251270",
-            "name": "넷마블",
-            "sector": "게임",
-            "price": 38850,
-            "ma50": 38609,
-            "ma200": 47476,
-            "high52w": 66962,
-            "return_3mo_pct": -11.8
+            "ticker": "003550",
+            "symbol": "003550",
+            "name": "LG",
+            "sector": "지주사",
+            "price": 120000,
+            "ma50": 103872,
+            "ma200": 94016,
+            "high52w": 165800,
+            "return_3mo_pct": -4.76
         },
         {
             "ticker": "036570",
             "symbol": "036570",
             "name": "엔씨소프트",
             "sector": "게임",
-            "price": 243500,
-            "ma50": 246550,
-            "ma200": 232753,
+            "price": 247500,
+            "ma50": 245710,
+            "ma200": 232963,
             "high52w": 338000,
-            "return_3mo_pct": -12.72
+            "return_3mo_pct": -8.84
         },
         {
             "ticker": "035720",
             "symbol": "035720",
             "name": "카카오",
             "sector": "서비스",
-            "price": 40100,
-            "ma50": 37053,
-            "ma200": 50161,
+            "price": 40000,
+            "ma50": 37013,
+            "ma200": 50057,
             "high52w": 67605,
-            "return_3mo_pct": -12.73
+            "return_3mo_pct": -9.09
+        },
+        {
+            "ticker": "251270",
+            "symbol": "251270",
+            "name": "넷마블",
+            "sector": "게임",
+            "price": 39100,
+            "ma50": 38514,
+            "ma200": 47392,
+            "high52w": 66962,
+            "return_3mo_pct": -9.49
+        },
+        {
+            "ticker": "000660",
+            "symbol": "000660",
+            "name": "SK하이닉스",
+            "sector": "IT",
+            "price": 1645000,
+            "ma50": 2043380,
+            "ma200": 1229144,
+            "high52w": 2919000,
+            "return_3mo_pct": -9.55
         }
     ],
     "sector_performance": [
