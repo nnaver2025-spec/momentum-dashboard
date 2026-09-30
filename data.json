@@ -1,27 +1,27 @@
 {
-    "last_updated": "09월 29일 02:26",
+    "last_updated": "09월 30일 01:47",
     "market_sentiment": "Green",
     "macro_indicators": {
-        "KOSPI": 6868.16,
-        "KOSDAQ": 839.92,
-        "USD_KRW": 1358.16
+        "KOSPI": 6937.88,
+        "KOSDAQ": 861.31,
+        "USD_KRW": 1358.48
     },
     "market_overview": {
         "KOSPI": {
-            "price": "6,870.25",
-            "change": "-19.49",
-            "change_pct": "-0.28",
-            "foreign": "-11,216",
-            "institution": "-722",
-            "individual": "+5,247"
+            "price": "6,904.99",
+            "change": "34.18",
+            "change_pct": "0.50",
+            "foreign": "-1,099",
+            "institution": "-2,611",
+            "individual": "-1,136"
         },
         "KOSDAQ": {
-            "price": "841.59",
-            "change": "-4.99",
-            "change_pct": "-0.59",
-            "foreign": "-1,177",
-            "institution": "-1,110",
-            "individual": "+2,520"
+            "price": "859.53",
+            "change": "9.73",
+            "change_pct": "1.14",
+            "foreign": "+173",
+            "institution": "+37",
+            "individual": "-66"
         }
     },
     "top_momentum_stocks": [
@@ -30,110 +30,110 @@
             "symbol": "096770",
             "name": "SK이노베이션",
             "sector": "배터리",
-            "price": 145900,
-            "ma50": 128016,
-            "ma200": 117807,
+            "price": 150500,
+            "ma50": 128598,
+            "ma200": 117980,
             "high52w": 158200,
-            "return_3mo_pct": 48.27
+            "return_3mo_pct": 58.59
         },
         {
             "ticker": "003550",
             "symbol": "003550",
             "name": "LG",
             "sector": "지주사",
-            "price": 110700,
-            "ma50": 108931,
-            "ma200": 98344,
+            "price": 112400,
+            "ma50": 109234,
+            "ma200": 98516,
             "high52w": 164407,
-            "return_3mo_pct": 10.75
+            "return_3mo_pct": 16.5
         },
         {
             "ticker": "006400",
             "symbol": "006400",
             "name": "삼성SDI",
             "sector": "배터리",
-            "price": 517000,
-            "ma50": 491050,
-            "ma200": 457537,
+            "price": 516000,
+            "ma50": 492560,
+            "ma200": 458562,
             "high52w": 712000,
-            "return_3mo_pct": 0.98
+            "return_3mo_pct": 5.95
         },
         {
             "ticker": "068270",
             "symbol": "068270",
             "name": "셀트리온",
             "sector": "바이오",
-            "price": 176600,
-            "ma50": 185842,
-            "ma200": 188774,
+            "price": 178900,
+            "ma50": 185950,
+            "ma200": 188810,
             "high52w": 236666,
-            "return_3mo_pct": -1.45
-        },
-        {
-            "ticker": "035420",
-            "symbol": "035420",
-            "name": "NAVER",
-            "sector": "서비스",
-            "price": 194500,
-            "ma50": 210150,
-            "ma200": 223078,
-            "high52w": 284016,
-            "return_3mo_pct": -4.66
+            "return_3mo_pct": 3.23
         },
         {
             "ticker": "207940",
             "symbol": "207940",
             "name": "삼성바이오로직스",
             "sector": "바이오",
-            "price": 1366000,
-            "ma50": 1478900,
-            "ma200": 1553220,
+            "price": 1386000,
+            "ma50": 1479080,
+            "ma200": 1551975,
             "high52w": 1965000,
-            "return_3mo_pct": -5.66
+            "return_3mo_pct": -0.36
+        },
+        {
+            "ticker": "035420",
+            "symbol": "035420",
+            "name": "NAVER",
+            "sector": "서비스",
+            "price": 195000,
+            "ma50": 210256,
+            "ma200": 222835,
+            "high52w": 284016,
+            "return_3mo_pct": -2.01
         },
         {
             "ticker": "035720",
             "symbol": "035720",
             "name": "카카오",
             "sector": "서비스",
-            "price": 33700,
-            "ma50": 36273,
-            "ma200": 46304,
+            "price": 33850,
+            "ma50": 36232,
+            "ma200": 46171,
             "high52w": 67605,
-            "return_3mo_pct": -6.0
-        },
-        {
-            "ticker": "005490",
-            "symbol": "005490",
-            "name": "POSCO홀딩스",
-            "sector": "철강",
-            "price": 306000,
-            "ma50": 321238,
-            "ma200": 350174,
-            "high52w": 529295,
-            "return_3mo_pct": -7.53
-        },
-        {
-            "ticker": "251270",
-            "symbol": "251270",
-            "name": "넷마블",
-            "sector": "게임",
-            "price": 34600,
-            "ma50": 36863,
-            "ma200": 44908,
-            "high52w": 62038,
-            "return_3mo_pct": -8.71
+            "return_3mo_pct": -2.03
         },
         {
             "ticker": "373220",
             "symbol": "373220",
             "name": "LG에너지솔루션",
             "sector": "배터리",
-            "price": 351000,
-            "ma50": 349630,
-            "ma200": 388092,
+            "price": 354000,
+            "ma50": 350060,
+            "ma200": 387780,
             "high52w": 514000,
-            "return_3mo_pct": -12.36
+            "return_3mo_pct": -2.21
+        },
+        {
+            "ticker": "005490",
+            "symbol": "005490",
+            "name": "POSCO홀딩스",
+            "sector": "철강",
+            "price": 307000,
+            "ma50": 321146,
+            "ma200": 350182,
+            "high52w": 529295,
+            "return_3mo_pct": -2.55
+        },
+        {
+            "ticker": "251270",
+            "symbol": "251270",
+            "name": "넷마블",
+            "sector": "게임",
+            "price": 34700,
+            "ma50": 36830,
+            "ma200": 44818,
+            "high52w": 61152,
+            "return_3mo_pct": -7.1
         }
     ],
     "sector_performance": [
