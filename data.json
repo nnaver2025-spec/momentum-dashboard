@@ -1,27 +1,27 @@
 {
-    "last_updated": "10월 15일 01:09",
+    "last_updated": "10월 16일 00:56",
     "market_sentiment": "Red",
     "macro_indicators": {
-        "KOSPI": 5592.12,
-        "KOSDAQ": 763.63,
-        "USD_KRW": 1348.18
+        "KOSPI": 5644.02,
+        "KOSDAQ": 782.55,
+        "USD_KRW": 1345.88
     },
     "market_overview": {
         "KOSPI": {
-            "price": "5,604.34",
-            "change": "-404.47",
-            "change_pct": "-6.73",
-            "foreign": "-15,047",
-            "institution": "+8,665",
-            "individual": "+5,029"
+            "price": "5,688.79",
+            "change": "134.57",
+            "change_pct": "2.42",
+            "foreign": "-3,619",
+            "institution": "+1,449",
+            "individual": "+1,165"
         },
         "KOSDAQ": {
-            "price": "765.46",
-            "change": "-58.42",
-            "change_pct": "-7.09",
-            "foreign": "+179",
-            "institution": "-19",
-            "individual": "-134"
+            "price": "787.84",
+            "change": "27.02",
+            "change_pct": "3.55",
+            "foreign": "-922",
+            "institution": "+354",
+            "individual": "+545"
         }
     },
     "top_momentum_stocks": [
@@ -30,22 +30,11 @@
             "symbol": "096770",
             "name": "SK이노베이션",
             "sector": "배터리",
-            "price": 157500,
-            "ma50": 135224,
-            "ma200": 119846,
+            "price": 151600,
+            "ma50": 135996,
+            "ma200": 120039,
             "high52w": 163200,
-            "return_3mo_pct": 42.92
-        },
-        {
-            "ticker": "006400",
-            "symbol": "006400",
-            "name": "삼성SDI",
-            "sector": "배터리",
-            "price": 547000,
-            "ma50": 519420,
-            "ma200": 469792,
-            "high52w": 712000,
-            "return_3mo_pct": 24.32
+            "return_3mo_pct": 44.52
         },
         {
             "ticker": "373220",
@@ -53,32 +42,65 @@
             "name": "LG에너지솔루션",
             "sector": "배터리",
             "price": 401500,
-            "ma50": 363010,
-            "ma200": 385897,
+            "ma50": 364500,
+            "ma200": 385832,
             "high52w": 514000,
-            "return_3mo_pct": 22.22
+            "return_3mo_pct": 24.69
         },
         {
-            "ticker": "003550",
-            "symbol": "003550",
-            "name": "LG",
-            "sector": "지주사",
-            "price": 101800,
-            "ma50": 111490,
-            "ma200": 99764,
-            "high52w": 164407,
-            "return_3mo_pct": 3.39
+            "ticker": "006400",
+            "symbol": "006400",
+            "name": "삼성SDI",
+            "sector": "배터리",
+            "price": 533000,
+            "ma50": 522000,
+            "ma200": 470947,
+            "high52w": 712000,
+            "return_3mo_pct": 24.68
         },
         {
             "ticker": "068270",
             "symbol": "068270",
             "name": "셀트리온",
             "sector": "바이오",
-            "price": 177000,
-            "ma50": 186694,
-            "ma200": 189014,
+            "price": 191900,
+            "ma50": 186900,
+            "ma200": 189122,
             "high52w": 236666,
-            "return_3mo_pct": 1.09
+            "return_3mo_pct": 11.05
+        },
+        {
+            "ticker": "003550",
+            "symbol": "003550",
+            "name": "LG",
+            "sector": "지주사",
+            "price": 104200,
+            "ma50": 111587,
+            "ma200": 99883,
+            "high52w": 164407,
+            "return_3mo_pct": 9.01
+        },
+        {
+            "ticker": "051910",
+            "symbol": "051910",
+            "name": "LG화학",
+            "sector": "화학",
+            "price": 252500,
+            "ma50": 268040,
+            "ma200": 312705,
+            "high52w": 429500,
+            "return_3mo_pct": -0.98
+        },
+        {
+            "ticker": "035420",
+            "symbol": "035420",
+            "name": "NAVER",
+            "sector": "서비스",
+            "price": 180100,
+            "ma50": 206158,
+            "ma200": 220004,
+            "high52w": 284016,
+            "return_3mo_pct": -1.69
         },
         {
             "ticker": "005490",
@@ -86,54 +108,32 @@
             "name": "POSCO홀딩스",
             "sector": "철강",
             "price": 295500,
-            "ma50": 321529,
-            "ma200": 350076,
+            "ma50": 321157,
+            "ma200": 349994,
             "high52w": 529295,
-            "return_3mo_pct": -3.46
-        },
-        {
-            "ticker": "051910",
-            "symbol": "051910",
-            "name": "LG화학",
-            "sector": "화학",
-            "price": 251000,
-            "ma50": 268130,
-            "ma200": 313246,
-            "high52w": 429500,
-            "return_3mo_pct": -3.65
-        },
-        {
-            "ticker": "035420",
-            "symbol": "035420",
-            "name": "NAVER",
-            "sector": "서비스",
-            "price": 173400,
-            "ma50": 206712,
-            "ma200": 220246,
-            "high52w": 284016,
-            "return_3mo_pct": -7.77
+            "return_3mo_pct": -2.03
         },
         {
             "ticker": "251270",
             "symbol": "251270",
             "name": "넷마블",
             "sector": "게임",
-            "price": 33600,
-            "ma50": 36434,
-            "ma200": 44156,
+            "price": 35350,
+            "ma50": 36384,
+            "ma200": 44093,
             "high52w": 57016,
-            "return_3mo_pct": -11.93
+            "return_3mo_pct": -4.2
         },
         {
-            "ticker": "035720",
-            "symbol": "035720",
-            "name": "카카오",
-            "sector": "서비스",
-            "price": 30500,
-            "ma50": 35586,
-            "ma200": 44929,
-            "high52w": 67605,
-            "return_3mo_pct": -12.23
+            "ticker": "207940",
+            "symbol": "207940",
+            "name": "삼성바이오로직스",
+            "sector": "바이오",
+            "price": 1302000,
+            "ma50": 1440712,
+            "ma200": 1530613,
+            "high52w": 1965000,
+            "return_3mo_pct": -4.82
         }
     ],
     "sector_performance": [
