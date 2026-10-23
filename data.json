@@ -1,139 +1,139 @@
 {
-    "last_updated": "10월 22일 01:08",
+    "last_updated": "10월 23일 01:08",
     "market_sentiment": "Red",
     "macro_indicators": {
-        "KOSPI": 5736.82,
-        "KOSDAQ": 790.47,
-        "USD_KRW": 1325.79
+        "KOSPI": 5416.05,
+        "KOSDAQ": 749.15,
+        "USD_KRW": 1322.46
     },
     "market_overview": {
         "KOSPI": {
-            "price": "5,687.88",
-            "change": "-47.78",
-            "change_pct": "-0.83",
-            "foreign": "+1,308",
-            "institution": "-167",
-            "individual": "-1,180"
+            "price": "5,436.33",
+            "change": "-97.44",
+            "change_pct": "-1.76",
+            "foreign": "-4,203",
+            "institution": "+3,464",
+            "individual": "+943"
         },
         "KOSDAQ": {
-            "price": "785.15",
-            "change": "-7.61",
-            "change_pct": "-0.96",
-            "foreign": "-1,298",
-            "institution": "-477",
-            "individual": "+1,860"
+            "price": "744.09",
+            "change": "-20.01",
+            "change_pct": "-2.62",
+            "foreign": "+28",
+            "institution": "-293",
+            "individual": "+292"
         }
     },
     "top_momentum_stocks": [
-        {
-            "ticker": "006400",
-            "symbol": "006400",
-            "name": "삼성SDI",
-            "sector": "배터리",
-            "price": 545000,
-            "ma50": 533580,
-            "ma200": 476575,
-            "high52w": 712000,
-            "return_3mo_pct": 30.85
-        },
         {
             "ticker": "373220",
             "symbol": "373220",
             "name": "LG에너지솔루션",
             "sector": "배터리",
-            "price": 399000,
-            "ma50": 371160,
-            "ma200": 386447,
+            "price": 386000,
+            "ma50": 371500,
+            "ma200": 386380,
             "high52w": 514000,
-            "return_3mo_pct": 25.87
+            "return_3mo_pct": 20.25
+        },
+        {
+            "ticker": "006400",
+            "symbol": "006400",
+            "name": "삼성SDI",
+            "sector": "배터리",
+            "price": 501000,
+            "ma50": 533760,
+            "ma200": 477515,
+            "high52w": 712000,
+            "return_3mo_pct": 19.57
         },
         {
             "ticker": "096770",
             "symbol": "096770",
             "name": "SK이노베이션",
             "sector": "배터리",
-            "price": 142600,
-            "ma50": 139422,
-            "ma200": 120965,
+            "price": 137850,
+            "ma50": 139755,
+            "ma200": 121122,
             "high52w": 163200,
-            "return_3mo_pct": 22.61
+            "return_3mo_pct": 16.43
         },
         {
             "ticker": "068270",
             "symbol": "068270",
             "name": "셀트리온",
             "sector": "바이오",
-            "price": 195600,
-            "ma50": 187652,
-            "ma200": 189596,
+            "price": 192000,
+            "ma50": 187480,
+            "ma200": 189686,
             "high52w": 236666,
-            "return_3mo_pct": 13.99
-        },
-        {
-            "ticker": "003550",
-            "symbol": "003550",
-            "name": "LG",
-            "sector": "지주사",
-            "price": 102600,
-            "ma50": 111640,
-            "ma200": 100358,
-            "high52w": 164407,
-            "return_3mo_pct": 6.34
+            "return_3mo_pct": 12.87
         },
         {
             "ticker": "207940",
             "symbol": "207940",
             "name": "삼성바이오로직스",
             "sector": "바이오",
-            "price": 1398000,
-            "ma50": 1435212,
-            "ma200": 1524183,
+            "price": 1403000,
+            "ma50": 1431412,
+            "ma200": 1522558,
             "high52w": 1965000,
-            "return_3mo_pct": 0.22
+            "return_3mo_pct": 2.26
         },
         {
-            "ticker": "036570",
-            "symbol": "036570",
-            "name": "엔씨소프트",
-            "sector": "게임",
-            "price": 212000,
-            "ma50": 220470,
-            "ma200": 234591,
-            "high52w": 338000,
-            "return_3mo_pct": -0.7
+            "ticker": "003550",
+            "symbol": "003550",
+            "name": "LG",
+            "sector": "지주사",
+            "price": 98300,
+            "ma50": 111428,
+            "ma200": 100440,
+            "high52w": 164407,
+            "return_3mo_pct": 0.03
         },
         {
             "ticker": "251270",
             "symbol": "251270",
             "name": "넷마블",
             "sector": "게임",
-            "price": 34600,
-            "ma50": 36051,
-            "ma200": 43816,
+            "price": 34200,
+            "ma50": 35914,
+            "ma200": 43742,
             "high52w": 57016,
-            "return_3mo_pct": -1.14
+            "return_3mo_pct": -3.8
+        },
+        {
+            "ticker": "036570",
+            "symbol": "036570",
+            "name": "엔씨소프트",
+            "sector": "게임",
+            "price": 206500,
+            "ma50": 219620,
+            "ma200": 234582,
+            "high52w": 338000,
+            "return_3mo_pct": -5.28
         },
         {
             "ticker": "051910",
             "symbol": "051910",
             "name": "LG화학",
             "sector": "화학",
-            "price": 247000,
-            "ma50": 268280,
-            "ma200": 311093,
+            "price": 234000,
+            "ma50": 267260,
+            "ma200": 310499,
             "high52w": 429500,
-            "return_3mo_pct": -1.4
+            "return_3mo_pct": -7.14
         },
         {
             "ticker": "005490",
             "symbol": "005490",
             "name": "POSCO홀딩스",
             "sector": "철강",
-            "price": 295500,
-            "ma50": 320543,
-            "ma200": 350093,
+            "price": 278000,
+            "ma50": 319334,
+            "ma200": 349892,
             "high52w": 529295,
-            "return_3mo_pct": -1.86
+            "return_3mo_pct": -7.68
         }
     ],
     "sector_performance": [
