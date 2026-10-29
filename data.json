@@ -1,27 +1,27 @@
 {
-    "last_updated": "10월 28일 01:58",
+    "last_updated": "10월 29일 02:02",
     "market_sentiment": "Red",
     "macro_indicators": {
-        "KOSPI": 5971.23,
-        "KOSDAQ": 768.55,
-        "USD_KRW": 1335.64
+        "KOSPI": 5866.6,
+        "KOSDAQ": 744.89,
+        "USD_KRW": 1333.88
     },
     "market_overview": {
         "KOSPI": {
-            "price": "6,001.74",
-            "change": "363.40",
-            "change_pct": "6.45",
-            "foreign": "+6,369",
-            "institution": "+5,782",
-            "individual": "-12,162"
+            "price": "5,864.31",
+            "change": "-148.13",
+            "change_pct": "-2.46",
+            "foreign": "+4,133",
+            "institution": "-4,902",
+            "individual": "-227"
         },
         "KOSDAQ": {
-            "price": "770.10",
-            "change": "26.27",
-            "change_pct": "3.53",
-            "foreign": "-600",
-            "institution": "+693",
-            "individual": "-60"
+            "price": "747.14",
+            "change": "-24.14",
+            "change_pct": "-3.13",
+            "foreign": "-785",
+            "institution": "-417",
+            "individual": "+1,330"
         }
     },
     "top_momentum_stocks": [
@@ -30,110 +30,110 @@
             "symbol": "006400",
             "name": "삼성SDI",
             "sector": "배터리",
-            "price": 535000,
-            "ma50": 535550,
-            "ma200": 480990,
+            "price": 519000,
+            "ma50": 536170,
+            "ma200": 482267,
             "high52w": 712000,
-            "return_3mo_pct": 24.13
+            "return_3mo_pct": 35.86
         },
         {
             "ticker": "096770",
             "symbol": "096770",
             "name": "SK이노베이션",
             "sector": "배터리",
-            "price": 137700,
-            "ma50": 140604,
-            "ma200": 121651,
+            "price": 129200,
+            "ma50": 140794,
+            "ma200": 121808,
             "high52w": 163200,
-            "return_3mo_pct": 17.99
+            "return_3mo_pct": 14.64
         },
         {
             "ticker": "373220",
             "symbol": "373220",
             "name": "LG에너지솔루션",
             "sector": "배터리",
-            "price": 391000,
-            "ma50": 372800,
-            "ma200": 386447,
+            "price": 350500,
+            "ma50": 372470,
+            "ma200": 386387,
             "high52w": 514000,
-            "return_3mo_pct": 17.42
-        },
-        {
-            "ticker": "068270",
-            "symbol": "068270",
-            "name": "셀트리온",
-            "sector": "바이오",
-            "price": 190900,
-            "ma50": 186648,
-            "ma200": 189967,
-            "high52w": 236666,
-            "return_3mo_pct": 6.83
+            "return_3mo_pct": 11.62
         },
         {
             "ticker": "003550",
             "symbol": "003550",
             "name": "LG",
             "sector": "지주사",
-            "price": 100500,
-            "ma50": 110945,
-            "ma200": 100753,
+            "price": 98800,
+            "ma50": 110652,
+            "ma200": 100851,
             "high52w": 164407,
-            "return_3mo_pct": 3.74
+            "return_3mo_pct": 7.02
+        },
+        {
+            "ticker": "068270",
+            "symbol": "068270",
+            "name": "셀트리온",
+            "sector": "바이오",
+            "price": 189600,
+            "ma50": 186378,
+            "ma200": 189945,
+            "high52w": 236666,
+            "return_3mo_pct": 6.88
         },
         {
             "ticker": "005930",
             "symbol": "005930",
             "name": "삼성전자",
             "sector": "IT",
-            "price": 241500,
-            "ma50": 253790,
-            "ma200": 236126,
+            "price": 230500,
+            "ma50": 253050,
+            "ma200": 236640,
             "high52w": 362100,
-            "return_3mo_pct": -4.92
+            "return_3mo_pct": 4.77
+        },
+        {
+            "ticker": "034730",
+            "symbol": "034730",
+            "name": "SK",
+            "sector": "지주사",
+            "price": 536000,
+            "ma50": 547520,
+            "ma200": 483787,
+            "high52w": 855672,
+            "return_3mo_pct": -0.65
+        },
+        {
+            "ticker": "000660",
+            "symbol": "000660",
+            "name": "SK하이닉스",
+            "sector": "IT",
+            "price": 1499000,
+            "ma50": 1626794,
+            "ma200": 1488606,
+            "high52w": 2918367,
+            "return_3mo_pct": -3.27
         },
         {
             "ticker": "051910",
             "symbol": "051910",
             "name": "LG화학",
             "sector": "화학",
-            "price": 238000,
-            "ma50": 264440,
-            "ma200": 308926,
+            "price": 229000,
+            "ma50": 263470,
+            "ma200": 308459,
             "high52w": 429500,
-            "return_3mo_pct": -8.46
-        },
-        {
-            "ticker": "251270",
-            "symbol": "251270",
-            "name": "넷마블",
-            "sector": "게임",
-            "price": 34000,
-            "ma50": 35523,
-            "ma200": 43533,
-            "high52w": 57016,
-            "return_3mo_pct": -8.97
+            "return_3mo_pct": -4.78
         },
         {
             "ticker": "005490",
             "symbol": "005490",
             "name": "POSCO홀딩스",
             "sector": "철강",
-            "price": 283500,
-            "ma50": 316237,
-            "ma200": 349467,
+            "price": 273500,
+            "ma50": 315208,
+            "ma200": 349365,
             "high52w": 529295,
-            "return_3mo_pct": -9.72
-        },
-        {
-            "ticker": "207940",
-            "symbol": "207940",
-            "name": "삼성바이오로직스",
-            "sector": "바이오",
-            "price": 1370000,
-            "ma50": 1422052,
-            "ma200": 1518388,
-            "high52w": 1965000,
-            "return_3mo_pct": -11.33
+            "return_3mo_pct": -7.96
         }
     ],
     "sector_performance": [
